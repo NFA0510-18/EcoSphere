@@ -50,23 +50,6 @@ images/               Site graphics and icons
 additionals/          Content images and media
 ```
 
-## Screenshots
-
-| Home | Quiz |
-|------|------|
-| ![Home page](screenshots/home.png) | ![Quiz page](screenshots/quiz.png) |
-
-| Gallery | Team |
-|---------|------|
-| ![Gallery page](screenshots/gallery.png) | ![Team page](screenshots/team.png) |
-
-| Splash | Feedback |
-|--------|----------|
-| ![Splash page](screenshots/splash.png) | ![Feedback page](screenshots/feedback.png) |
-
-| Profile | Sitemap |
-|---------|---------|
-| ![Profile page](screenshots/profile.png) | ![Sitemap page](screenshots/sitemap.png) |
 
 ## Validation
 
