@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <title>EcoSphere - Gallery</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: rgba(231, 255, 244, 0.903);
+      }
+
+      #title {
+        background-color: rgb(2, 50, 42);
+        padding: 80px 8% 100px 8%;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        height: 250px;
+      }
+
+      .subtitle-badge {
+        color: rgb(142, 225, 9);
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin: 0 0 20px 0;
+      }
+
+      .text h1 {
+        color: #ffffff;
+        font-size: clamp(2.5rem, 5vw, 4.8rem);
+        font-weight: 700;
+        line-height: 1.05;
+        margin: 0 0 24px 0;
+        max-width: 900px;
+        letter-spacing: -1px;
+      }
+
+      .description-text {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+        line-height: 1.5;
+        max-width: 650px;
+        margin: 0;
+      }
+
+      #pictures {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        padding: 40px 10%;
+        background-color: #f1f4f0;
+        box-sizing: border-box;
+      }
+
+      .card {
+        position: relative;
+        height: 380px;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      .card:hover {
+        transform: scale(1.02);
+      }
+
+      .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.6) 0%,
+          rgba(0, 0, 0, 0) 40%
+        );
+        pointer-events: none;
+      }
+
+      .card-text {
+        position: absolute;
+        bottom: 25px;
+        left: 30px;
+        color: #ffffff;
+        font-family: sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        z-index: 2;
+        letter-spacing: 0.5px;
+      }
+
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: #ffffff;
+        color: #111111;
+        padding: 40px;
+        border-radius: 32px;
+        width: 85%;
+        max-width: 850px;
+        position: relative;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition:
+          background-color 0.3s,
+          color 0.3s;
+      }
+
+      .modal-content.dark-theme {
+        background-color: #1e293b;
+        color: #f8fafc;
+      }
+      .modal-content.dark-theme h2,
+      .modal-content.dark-theme h3,
+      .modal-content.dark-theme label {
+        color: #ffffff;
+      }
+      .modal-content.dark-theme p {
+        color: #cbd5e1;
+      }
+      .modal-content.dark-theme .close-btn {
+        color: #ffffff;
+      }
+
+      .modal-content.serif-font {
+        font-family: Georgia, Cambria, serif;
+      }
+      .modal-content.serif-font h2,
+      .modal-content.serif-font p,
+      .modal-content.serif-font h3 {
+        font-family: Georgia, Cambria, serif;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 25px;
+        right: 30px;
+        font-size: 24px;
+        cursor: pointer;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .modal-body {
+        display: flex;
+        gap: 40px;
+      }
+
+      .modal-left,
+      .modal-right {
+        flex: 1;
+        width: 50%;
+      }
+
+      .modal-pop-img {
+        width: 100%;
+        height: 100%;
+        min-height: 250px;
+        object-fit: cover;
+        border-radius: 16px;
+      }
+
+      .extended-view {
+        font-size: 11px;
+        font-weight: 800;
+        color: #054b3f;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .modal-content.dark-theme .extended-view {
+        color: rgb(142, 225, 9);
+      }
+
+      .modal-right h2 {
+        margin: 0 0 15px 0;
+        font-size: 32px;
+        font-weight: 800;
+        color: #111;
+      }
+
+      .modal-right p {
+        color: #444;
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
+
+      .modal-right hr {
+        border: 0;
+        border-top: 1px solid #e0e0e0;
+        margin-bottom: 20px;
+      }
+
+      .modal-right h3 {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0 0 15px 0;
+        color: #111;
+      }
+
+      .custom-options {
+        display: flex;
+        gap: 15px;
+      }
+
+      .custom-options div {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .custom-options label {
+        font-size: 13px;
+        font-weight: 700;
+        color: #111;
+      }
+
+      .custom-options select {
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        font-size: 13px;
+        background-color: white;
+        color: #333;
+        min-width: 120px;
+        cursor: pointer;
+      }
+
+      footer {
+        background-color: rgb(5, 75, 63);
+        color: rgb(255, 255, 255);
+        border-top: 5px solid rgb(142, 225, 9);
+        padding: 20px 15px;
+        text-align: center;
+      }
+
+      footer p {
+        margin: 5px 0;
+      }
+
+      footer a {
+        display: inline-block;
+        color: rgb(169, 244, 49);
+        margin: 3px 8px;
+      }
+
+      footer a:hover,
+      footer a:focus {
+        color: rgb(255, 255, 255);
+      }
+
+      .go-to-top {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        background-color: rgb(5, 75, 63);
+        color: rgb(255, 255, 255);
+        border: 2px solid rgb(142, 225, 9);
+        padding: 10px 14px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 6px;
+        z-index: 100;
+      }
+      .go-to-top:hover,
+      .go-to-top:focus {
+        background-color: rgb(22, 111, 96);
+        color: rgb(255, 255, 255);
+      }
+
+      .floating-top-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: rgb(142, 225, 9);
+        color: rgb(2, 50, 42);
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        z-index: 100;
+      }
+      .floating-top-btn:hover,
+      .floating-top-btn:focus {
+        background-color: rgb(155, 245, 15);
+        transform: translateY(-3px);
+      }
+
+      .floating-top-btn.hide-until-scroll {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease,
+          visibility 0.25s;
+      }
+      .floating-top-btn.hide-until-scroll.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body id="top">
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="home.html">&#10052; EcoSphere</a>
+        </div>
+
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li>
+            <a class="active" aria-current="page" href="gallery.html"
+              >Gallery</a
+            >
+          </li>
+          <li><a href="profile.html">User Profile</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="title">
+        <p class="subtitle-badge">&bull; Gallery</p>
+        <div class="text">
+          <h1>Evidence of change.</h1>
+          <p class="description-text">
+            Select a photograph to open its climate story.
+          </p>
+        </div>
+      </section>
+
+      <div id="pictures">
+        <div
+          class="card"
+          data-desc="Renewable Energy Transitions in Communities represents the collective shift toward sustainable, decentralized power generation. Supporting the climate cause."
+        >
+          <img src="additionals/turbines.jpg" alt="energy" />
+          <div class="card-text">01 &bull; Energy</div>
+        </div>
+
+        <div
+          class="card"
+          data-desc="Partnerships allow organisations to combine ideas, skills and resources. A corporate sustainability partnership is created when businesses work with other organisations on a shared environmental goal."
+        >
+          <img src="additionals/content-pic1.jpg" alt="partnerships" />
+          <div class="card-text">02 &bull; Partnerships</div>
+        </div>
+
+        <div
+          class="card"
+          data-desc="Global supply chains cross borders and consume energy at every stage. To achieve true climate action, companies must look beyond their own walls and simplify environmental standards to help suppliers optimize energy use worldwide."
+        >
+          <img src="additionals/content-pic2.png" alt="supply-chain" />
+          <div class="card-text">03 &bull; Supply chain</div>
+        </div>
+
+        <div
+          class="card"
+          data-desc="Clean manufacturing combines useful production with careful use of resources.For clean manufacturing, this may include energy efficiency, safer materials, waste reduction, water use and the reuse of production materials."
+        >
+          <img src="additionals/content-pic3.jpeg" alt="Manufacturing" />
+          <div class="card-text">04 &bull; Manufacturing</div>
+        </div>
+
+        <div
+          class="card"
+          data-desc="By producing power locally, communities gain more independence over their energy supply, lower their monthly utility costs, and significantly reduce toxic emissions."
+        >
+          <img
+            src="additionals/content2-pic1.webp"
+            alt="Habitat mapping analysis dashboard"
+          />
+          <div class="card-text">05 &bull; New solutions</div>
+        </div>
+
+        <div
+          class="card"
+          data-desc="By replacing traditional power generation with clean energy, we tackle the root cause of global climate shifts. This transition doesn't just stop future environmental damage; it actively allows natural systems to recover over time."
+        >
+          <img src="additionals/content2-pic2.jpg" alt="The Climate Impact" />
+          <div class="card-text">06 &bull; The Climate Impact</div>
+        </div>
+
+        <div
+          class="card"
+          data-desc="Taking control of your own energy isn't just great for the planet,it is also amazing for the people living there."
+        >
+          <img src="additionals/content2-pic3.jfif" alt="action" />
+          <div class="card-text">7 &bull; action</div>
+        </div>
+
+        <div
+          class="card"
+          data-desc="Climate communication helps transform complex scientific information into clear and understandable messages."
+        >
+          <img src="additionals/content3-pic3.jpeg" alt="Clear Communication" />
+          <div class="card-text">08 &bull; Clear Communication</div>
+        </div>
+
+        <div
+          class="card"
+          data-desc="The internet and social media allow climate information to spread quickly. However, not all information available online is accurate."
+        >
+          <img src="additionals/content3-pic4.jpeg" alt="false information" />
+          <div class="card-text">09 &bull; false information</div>
+        </div>
+
+        <div
+          class="card"
+          data-desc="Schools, universities, community groups, websites, newspapers, television and social media can all help spread awareness about climate change."
+        >
+          <img src="additionals/content3-pic1.jpeg" alt="Climate Awareness" />
+          <div class="card-text">10 &bull; Climate Awareness</div>
+        </div>
+      </div>
+
+      <div id="photoModal" class="modal-overlay">
+        <div class="modal-content" id="modalContent">
+          <span class="close-btn">&times;</span>
+
+          <div class="modal-body">
+            <div class="modal-left">
+              <img
+                id="modalImg"
+                src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201%201'%3E%3C/svg%3E"
+                alt="Popup view"
+                class="modal-pop-img"
+              />
+            </div>
+
+            <div class="modal-right">
+              <span class="extended-view">Extended View</span>
+              <h2 id="modalTitle">Climate Details</h2>
+              <p id="modalDesc"></p>
+
+              <hr />
+
+              <h3>Customise this view</h3>
+              <div class="custom-options">
+                <div>
+                  <label for="colorScheme">Colour scheme</label>
+                  <select id="colorScheme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="fontStyle">Font style</label>
+                  <select id="fontStyle">
+                    <option value="sans">Modern sans</option>
+                    <option value="serif">Classic serif</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p><b>Student 1:</b> Dunith Peiris | <b>ID:</b> w2212825</p>
+        <p>
+          <a href="pageEditor_ST1.html">Page Editor</a>
+          <a href="validation_ST1.html">Validation Page</a>
+        </p>
+      </footer>
+    </main>
+
+    <script>
+      const modal = document.getElementById("photoModal");
+      const modalContent = document.getElementById("modalContent");
+      const modalImg = document.getElementById("modalImg");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalDesc = document.getElementById("modalDesc");
+      const closeBtn = document.querySelector(".close-btn");
+      const cards = document.querySelectorAll(".card");
+
+      const colorSchemeSelect = document.getElementById("colorScheme");
+      const fontStyleSelect = document.getElementById("fontStyle");
+
+      cards.forEach((card) => {
+        card.addEventListener("click", function () {
+          const imgSrc = this.querySelector("img").src;
+          const imgAlt = this.querySelector("img").alt;
+          const rawText = this.querySelector(".card-text").textContent;
+          const description = this.getAttribute("data-desc");
+
+          const cleanTitle = rawText.split("•")[1]
+            ? rawText.split("•")[1].trim()
+            : rawText;
+
+          modalImg.src = imgSrc;
+          modalImg.alt = imgAlt;
+          modalTitle.textContent = cleanTitle;
+          modalDesc.textContent = description;
+
+          modal.style.display = "flex";
+        });
+      });
+
+      colorSchemeSelect.addEventListener("change", function () {
+        if (this.value === "dark") {
+          modalContent.classList.add("dark-theme");
+        } else {
+          modalContent.classList.remove("dark-theme");
+        }
+      });
+
+      fontStyleSelect.addEventListener("change", function () {
+        if (this.value === "serif") {
+          modalContent.classList.add("serif-font");
+        } else {
+          modalContent.classList.remove("serif-font");
+        }
+      });
+
+      closeBtn.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+    <a class="floating-top-btn" href="#top">&#8593; Go to Top</a>
+    <script>
+      (function () {
+        var btn = document.querySelector(".floating-top-btn");
+        if (!btn) return;
+        btn.classList.add("hide-until-scroll");
+        function toggle() {
+          if (window.scrollY > 200) {
+            btn.classList.add("show");
+          } else {
+            btn.classList.remove("show");
+          }
+        }
+        window.addEventListener("scroll", toggle, { passive: true });
+        toggle();
+      })();
+    </script>
+  </body>
+</html>

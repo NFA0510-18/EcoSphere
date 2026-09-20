@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="4; url=home.html" />
+    <title>Welcome | EcoSphere</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="splash.css" />
+  </head>
+  <body>
+    <div class="splash-wrap">
+      <h1 class="splash-logo">&#10052; EcoSphere</h1>
+      <p class="splash-tagline">SDG 13 &middot; Climate Action</p>
+
+      <p class="splash-mission">
+        EcoSphere shows how individuals, communities and businesses can take
+        real, everyday action on climate change, and how small choices can add
+        up to a real difference.
+      </p>
+
+      <div class="splash-team">
+        <h2>Created by</h2>
+        <ul>
+          <li>Student 1: Dunith Peiris</li>
+          <li>Student 2: Danidu Herath</li>
+          <li>Student 3: Nicola Fernando</li>
+          <li>Student 4: Vanuja Liyanage</li>
+        </ul>
+      </div>
+
+      <div class="loader" role="status" aria-label="Loading the site"></div>
+
+      <p class="countdown">
+        Entering site in <span id="count-number">4</span>&hellip;
+      </p>
+
+      <a class="skip-button" id="skip-button" href="home.html"
+        >Skip Intro &#8594;</a
+      >
+    </div>
+
+    <script>
+      let secondsLeft = 4;
+      let countNumber = document.getElementById("count-number");
+
+      let timer = setInterval(function () {
+        secondsLeft = secondsLeft - 1;
+
+        if (secondsLeft > 0) {
+          countNumber.innerHTML = secondsLeft;
+        } else {
+          countNumber.innerHTML = 0;
+          clearInterval(timer);
+        }
+      }, 1000);
+
+      document
+        .getElementById("skip-button")
+        .addEventListener("click", function () {
+          clearInterval(timer);
+        });
+    </script>
+  </body>
+</html>

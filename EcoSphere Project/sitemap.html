@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sitemap | EcoSphere</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .floating-top-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: rgb(142, 225, 9);
+        color: rgb(2, 50, 42);
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        z-index: 100;
+      }
+      .floating-top-btn:hover,
+      .floating-top-btn:focus {
+        background-color: rgb(155, 245, 15);
+        transform: translateY(-3px);
+      }
+
+      .floating-top-btn.hide-until-scroll {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease,
+          visibility 0.25s;
+      }
+      .floating-top-btn.hide-until-scroll.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body id="top">
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="home.html">&#10052; EcoSphere</a>
+        </div>
+
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="profile.html">User Profile</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li>
+            <a class="active" aria-current="page" href="sitemap.html"
+              >Sitemap</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="page-container">
+      <section class="page-introduction">
+        <p class="small-heading">STUDENT 4 PROJECT</p>
+        <h1>EcoSphere Sitemap</h1>
+        <p>Select any SVG node to open the related website page.</p>
+      </section>
+
+      <section class="content-panel">
+        <h2>Website Structure</h2>
+        <p>
+          The sitemap is created with SVG lines, rectangles, text and links. It
+          does not use JavaScript.
+        </p>
+
+        <div class="sitemap-container">
+          <svg
+            class="sitemap-svg"
+            viewBox="0 0 600 1320"
+            role="img"
+            aria-labelledby="sitemapTitle sitemapDescription"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title id="sitemapTitle">EcoSphere website sitemap</title>
+            <desc id="sitemapDescription">
+              A clickable SVG hierarchy containing the website pages.
+            </desc>
+
+            <line class="connector" x1="300" y1="80" x2="300" y2="120" />
+            <line class="connector" x1="300" y1="180" x2="300" y2="220" />
+            <line class="connector" x1="300" y1="270" x2="300" y2="610" />
+            <line class="connector" x1="155" y1="300" x2="445" y2="300" />
+            <line class="connector" x1="155" y1="300" x2="155" y2="320" />
+            <line class="connector" x1="445" y1="300" x2="445" y2="320" />
+            <line class="connector" x1="155" y1="390" x2="445" y2="390" />
+            <line class="connector" x1="155" y1="390" x2="155" y2="410" />
+            <line class="connector" x1="445" y1="390" x2="445" y2="410" />
+            <line class="connector" x1="155" y1="480" x2="445" y2="480" />
+            <line class="connector" x1="155" y1="480" x2="155" y2="500" />
+            <line class="connector" x1="445" y1="480" x2="445" y2="500" />
+            <line class="connector" x1="300" y1="660" x2="300" y2="900" />
+            <line class="connector" x1="155" y1="690" x2="445" y2="690" />
+            <line class="connector" x1="155" y1="690" x2="155" y2="710" />
+            <line class="connector" x1="445" y1="690" x2="445" y2="710" />
+            <line class="connector" x1="155" y1="780" x2="445" y2="780" />
+            <line class="connector" x1="155" y1="780" x2="155" y2="800" />
+            <line class="connector" x1="445" y1="780" x2="445" y2="800" />
+            <line class="connector" x1="300" y1="950" x2="300" y2="1270" />
+            <line class="connector" x1="280" y1="1030" x2="320" y2="1030" />
+            <line class="connector" x1="280" y1="1110" x2="320" y2="1110" />
+            <line class="connector" x1="280" y1="1190" x2="320" y2="1190" />
+            <line class="connector" x1="280" y1="1270" x2="320" y2="1270" />
+
+            <a class="site-node root-node" href="splash.html">
+              <title>Open the Splash Screen</title>
+              <rect
+                class="node-box"
+                x="190"
+                y="20"
+                width="220"
+                height="60"
+                rx="8"
+              />
+              <text class="node-text" x="300" y="58">Splash Screen</text>
+            </a>
+            <a class="site-node home-node" href="home.html">
+              <title>Open the Home page</title>
+              <rect
+                class="node-box"
+                x="190"
+                y="120"
+                width="220"
+                height="60"
+                rx="8"
+              />
+              <text class="node-text" x="300" y="158">Home</text>
+            </a>
+
+            <rect
+              class="group-box"
+              x="190"
+              y="220"
+              width="220"
+              height="50"
+              rx="8"
+            />
+            <text class="group-text" x="300" y="252">Main Pages</text>
+
+            <a class="site-node" href="gallery.html">
+              <title>Open the Gallery page</title>
+              <rect
+                class="node-box"
+                x="30"
+                y="320"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="node-text" x="155" y="356">Gallery</text>
+            </a>
+            <a class="site-node" href="quiz.html">
+              <title>Open the Quiz page</title>
+              <rect
+                class="node-box"
+                x="320"
+                y="320"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="node-text" x="445" y="356">Quiz</text>
+            </a>
+            <a class="site-node" href="feedback.html">
+              <title>Open the Feedback page</title>
+              <rect
+                class="node-box"
+                x="30"
+                y="410"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="node-text" x="155" y="446">Feedback</text>
+            </a>
+            <a class="site-node" href="team.html">
+              <title>Open the Team page</title>
+              <rect
+                class="node-box"
+                x="320"
+                y="410"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="node-text" x="445" y="446">Team</text>
+            </a>
+            <a class="site-node" href="profile.html">
+              <title>Open the User Profile page</title>
+              <rect
+                class="node-box"
+                x="30"
+                y="500"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="node-text" x="155" y="536">User Profile</text>
+            </a>
+            <a class="site-node" href="sitemap.html">
+              <title>Open the Sitemap page</title>
+              <rect
+                class="node-box"
+                x="320"
+                y="500"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="node-text" x="445" y="536">Sitemap</text>
+            </a>
+
+            <rect
+              class="group-box"
+              x="190"
+              y="610"
+              width="220"
+              height="50"
+              rx="8"
+            />
+            <text class="group-text" x="300" y="642">Content Pages</text>
+
+            <a class="site-node" href="content_ST1.html">
+              <title>Open Student 1 content page</title>
+              <rect
+                class="node-box"
+                x="30"
+                y="710"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="node-text" x="155" y="746">Content ST1</text>
+            </a>
+            <a class="site-node" href="content_ST2.html">
+              <title>Open Student 2 content page</title>
+              <rect
+                class="node-box"
+                x="320"
+                y="710"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="node-text" x="445" y="746">Content ST2</text>
+            </a>
+            <a class="site-node" href="content_ST3.html">
+              <title>Open Student 3 content page</title>
+              <rect
+                class="node-box"
+                x="30"
+                y="800"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="node-text" x="155" y="836">Content ST3</text>
+            </a>
+            <a class="site-node" href="content_ST4.html">
+              <title>Open Student 4 content page</title>
+              <rect
+                class="node-box"
+                x="320"
+                y="800"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="node-text" x="445" y="836">Content ST4</text>
+            </a>
+
+            <rect
+              class="group-box"
+              x="190"
+              y="900"
+              width="220"
+              height="50"
+              rx="8"
+            />
+            <text class="group-text" x="300" y="932">Student Reports</text>
+
+            <a class="site-node" href="pageEditor_ST1.html">
+              <title>Open Student 1 Page Editor</title>
+              <rect
+                class="node-box"
+                x="30"
+                y="1000"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="small-node-text" x="155" y="1036">
+                Page Editor ST1
+              </text>
+            </a>
+            <a class="site-node" href="validation_ST1.html">
+              <title>Open Student 1 Validation page</title>
+              <rect
+                class="node-box"
+                x="320"
+                y="1000"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="small-node-text" x="445" y="1036">
+                Validation ST1
+              </text>
+            </a>
+            <a class="site-node" href="pageEditor_ST2.html">
+              <title>Open Student 2 Page Editor</title>
+              <rect
+                class="node-box"
+                x="30"
+                y="1080"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="small-node-text" x="155" y="1116">
+                Page Editor ST2
+              </text>
+            </a>
+            <a class="site-node" href="validation_ST2.html">
+              <title>Open Student 2 Validation page</title>
+              <rect
+                class="node-box"
+                x="320"
+                y="1080"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="small-node-text" x="445" y="1116">
+                Validation ST2
+              </text>
+            </a>
+            <a class="site-node" href="pageEditor_ST3.html">
+              <title>Open Student 3 Page Editor</title>
+              <rect
+                class="node-box"
+                x="30"
+                y="1160"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="small-node-text" x="155" y="1196">
+                Page Editor ST3
+              </text>
+            </a>
+            <a class="site-node" href="validation_ST3.html">
+              <title>Open Student 3 Validation page</title>
+              <rect
+                class="node-box"
+                x="320"
+                y="1160"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="small-node-text" x="445" y="1196">
+                Validation ST3
+              </text>
+            </a>
+            <a class="site-node" href="pageEditor_ST4.html">
+              <title>Open Student 4 Page Editor</title>
+              <rect
+                class="node-box"
+                x="30"
+                y="1240"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="small-node-text" x="155" y="1276">
+                Page Editor ST4
+              </text>
+            </a>
+            <a class="site-node" href="validation_ST4.html">
+              <title>Open Student 4 Validation page</title>
+              <rect
+                class="node-box"
+                x="320"
+                y="1240"
+                width="250"
+                height="60"
+                rx="8"
+              />
+              <text class="small-node-text" x="445" y="1276">
+                Validation ST4
+              </text>
+            </a>
+          </svg>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        <strong>Student 4:</strong> Vanuja Liyanage |
+        <strong>ID:</strong> w2212832
+      </p>
+      <p>
+        <a href="pageEditor_ST4.html">Page Editor</a>
+        <a href="validation_ST4.html">Validation Page</a>
+      </p>
+    </footer>
+    <a class="floating-top-btn" href="#top">&#8593; Go to Top</a>
+    <script>
+      (function () {
+        var btn = document.querySelector(".floating-top-btn");
+        if (!btn) return;
+        btn.classList.add("hide-until-scroll");
+        function toggle() {
+          if (window.scrollY > 200) {
+            btn.classList.add("show");
+          } else {
+            btn.classList.remove("show");
+          }
+        }
+        window.addEventListener("scroll", toggle, { passive: true });
+        toggle();
+      })();
+    </script>
+  </body>
+</html>

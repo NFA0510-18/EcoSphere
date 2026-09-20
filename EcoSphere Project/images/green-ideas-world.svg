@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img">
+<rect width="800" height="500" fill="#E7FFF4"/>
+<circle cx="400" cy="250" r="150" fill="#166F60" stroke="#054B3F" stroke-width="6"/>
+<path d="M300 210 q60 -30 110 5 q40 30 90 10 M290 270 q70 40 150 10 q50 -20 80 20" stroke="#8EE109" stroke-width="8" fill="none" stroke-linecap="round"/>
+<circle cx="330" cy="200" r="14" fill="#8EE109"/>
+<circle cx="470" cy="230" r="14" fill="#DCF1E7"/>
+<circle cx="380" cy="300" r="14" fill="#8EE109"/>
+<g fill="#8EE109">
+<path d="M400 70 l10 26 -20 0 z"/>
+<path d="M580 250 l26 10 0 -20 z"/>
+<path d="M220 250 l-26 10 0 -20 z"/>
+</g>
+<text x="400" y="450" font-family="Arial" font-size="26" fill="#054B3F" text-anchor="middle" font-weight="bold">Green ideas spreading worldwide</text>
+</svg>

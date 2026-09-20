@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Editor - Student 2 | EcoSphere</title>
+    <link rel="stylesheet" href="css/pageEditor_validator.css" />
+  </head>
+  <body>
+    <header id="top">
+      <nav aria-label="Main navigation">
+        <div class="logo">
+          <a href="home.html">&#10052; EcoSphere</a>
+        </div>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="profile.html">User Profile</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="stud">
+      <h2>Danidu Herath | EcoSphere | Student 2 - w2212829</h2>
+      <p>Splash Screen, Quiz and Content Page</p>
+    </section>
+
+    <div class="container">
+      <main>
+        <section>
+          <h2 id="splash">Splash Screen</h2>
+
+          <h3>Technical Description</h3>
+          <p>
+            The Splash Screen presents the EcoSphere name, SDG 13 mission and
+            four group members. A loader, countdown and Skip Intro link show
+            that the Home Page will open after four seconds. JavaScript uses
+            <code>setInterval</code> and an <code>if</code> condition to update
+            the visible countdown, while the meta refresh performs the redirect.
+          </p>
+
+          <h3>Accessibility</h3>
+          <p>
+            The loader has a status role and accessible label. A visible Skip
+            Intro link lets visitors bypass the timed screen, and the main
+            information is provided as text rather than animation alone.
+          </p>
+
+          <h3>Link to the validation page</h3>
+          <p>
+            <a href="validation_ST2.html#splashVal">
+              View the Splash Screen validation section
+            </a>
+          </p>
+
+          <h3>Link to the page</h3>
+          <p><a href="splash.html">Open the Splash Screen</a></p>
+        </section>
+
+        <section>
+          <h2 id="quiz">Climate Action Quiz</h2>
+
+          <h3>Technical Description</h3>
+          <p>
+            Eight climate-action cards contain an image, action name,
+            explanation and point value. CSS Grid creates the responsive layout.
+            JavaScript click and keyboard events select cards, while one
+            function loops through selected items and totals their
+            <code>data-points</code>. Conditions show low, medium or high
+            feedback, and Reset clears the selections.
+          </p>
+
+          <h3>Accessibility</h3>
+          <p>
+            Cards can be operated with a mouse, Enter or Space. Each card
+            updates its <code>aria-pressed</code> value, images include
+            alternative text, and visible feedback explains the score without
+            depending only on colour.
+          </p>
+
+          <h3>Link to the validation page</h3>
+          <p>
+            <a href="validation_ST2.html#quizVal">
+              View the Quiz validation section
+            </a>
+          </p>
+
+          <h3>Link to the page</h3>
+          <p><a href="quiz.html">Open the Quiz</a></p>
+        </section>
+
+        <section>
+          <h2 id="content">Technology and Knowledge Sharing Content Page</h2>
+
+          <h3>Technical Description</h3>
+          <p>
+            Internal links lead to sections about cooperation between nations,
+            sharing green ideas and open-source climate research. Each section
+            uses paragraphs and lists to explain the topic. Three local SVG
+            illustrations support the content, while Flexbox and responsive
+            image sizing control the layout. No JavaScript is required on this
+            content page.
+          </p>
+
+          <h3>Accessibility</h3>
+          <p>
+            Descriptive headings and internal links make the long page easier to
+            scan. The illustrations include alternative text, and the written
+            content communicates the same ideas without requiring visitors to
+            interpret images.
+          </p>
+
+          <h3>Link to the validation page</h3>
+          <p>
+            <a href="validation_ST2.html#contentVal">
+              View the Content Page validation section
+            </a>
+          </p>
+
+          <h3>Link to the page</h3>
+          <p><a href="content_ST2.html">Open the Content Page</a></p>
+        </section>
+
+        <section>
+          <h2 id="challenge">Challenges and Lessons Learned</h2>
+          <p>
+            The visible Splash countdown needed to agree with the automatic
+            redirect, so the timer was kept simple and cleared when Skip Intro
+            was used. The Quiz needed many cards to update one result panel; a
+            loop and one feedback function avoided repeated scoring code.
+            Keyboard events and ARIA states also connected interaction with
+            accessibility.
+          </p>
+        </section>
+
+        <section>
+          <h2 id="compliance">Compliance</h2>
+          <p>
+            The pages contain appropriate educational climate material. Quiz
+            selections remain in the browser and are not stored or transmitted.
+            Professional language, local media, alternative text and keyboard
+            controls support safe and inclusive use under JANET publication
+            guidance.
+          </p>
+          <p>
+            <a
+              href="https://intranet.ecs.westminster.ac.uk/modules/4COSC011W/compliance.html"
+              target="_blank"
+              rel="noopener"
+              >Course compliance guidance</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <h2 id="group">Group Meetings and Individual Contribution Log</h2>
+
+          <div class="table-container">
+            <table class="report-table meeting-table">
+              <thead>
+                <tr>
+                  <th colspan="6">Group Meetings and Contribution Log</th>
+                </tr>
+                <tr>
+                  <th>Meeting</th>
+                  <th>Date and Time</th>
+                  <th>Format</th>
+                  <th>Objective</th>
+                  <th>Attended</th>
+                  <th>Individual Contribution</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>June 16<sup>th</sup>2026</td>
+                  <td>Face-to-face</td>
+                  <td>Choosing the topic and role allocation</td>
+                  <td>All members</td>
+                  <td>Suggesting topics and ideas</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>June 24<sup>th</sup>2026</td>
+                  <td>Face-to-face</td>
+                  <td>Navigation bar and visual design</td>
+                  <td>All members</td>
+                  <td>focused on visual design</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>July 1<sup>st</sup>2026</td>
+                  <td>Face-to-face</td>
+                  <td>Home Page progress review and content disscusions</td>
+                  <td>All members</td>
+                  <td>collected content for the content page</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>July 7<sup>th</sup>2026</td>
+                  <td>Face-to-face</td>
+                  <td>Gallery,team page,profile progress review.</td>
+                  <td>All members</td>
+                  <td>
+                    gave content pictures for the gallery and information for
+                    the team page
+                  </td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>July 12<sup>th</sup>2026</td>
+                  <td>Online</td>
+                  <td>
+                    creation of the combined folder, testing and validation
+                  </td>
+                  <td>All members</td>
+                  <td>Supplied the neccesary files for the folder.</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>July 18<sup>th</sup>2026</td>
+                  <td>Online</td>
+                  <td>Sorting out additional issues</td>
+                  <td>All members</td>
+                  <td>Helped with errors that occured</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2 id="ref">References</h2>
+          <ul class="ref">
+            <li>
+              4COSC011W Web Design and Development Coursework Specification,
+              2025-2026.
+            </li>
+            <li>
+              Lecture Weeks 1-3: HTML structure, CSS, images and responsive
+              layouts.
+            </li>
+            <li>
+              Lecture Weeks 7-10: variables, functions, loops, conditions,
+              events and DOM updates.
+            </li>
+            <li>
+              Week 5 Compliance lecture: accessibility and responsible web
+              publication.
+            </li>
+            <li>
+              W3C (2026) <i>Nu HTML Checker.</i>
+              Available at:
+              <a
+                href="https://validator.w3.org/nu/"
+                target="_blank"
+                rel="noopener"
+              >
+                https://validator.w3.org/nu/
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <p class="top"><a href="#top">Go top</a></p>
+      </main>
+
+      <aside>
+        <h3>Core pages developed:</h3>
+        <ul class="top-level-ul">
+          <li>
+            Student 2
+            <ul>
+              <li><a href="#splash">Splash Screen</a></li>
+              <li><a href="#quiz">Quiz</a></li>
+              <li><a href="#content">Content Page</a></li>
+            </ul>
+          </li>
+          <li><a href="#challenge">Challenges and Lessons Learned</a></li>
+          <li><a href="#compliance">Compliance</a></li>
+          <li>
+            <a href="#group">Group Meetings and Individual Contribution Log</a>
+          </li>
+          <li><a href="#ref">References</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer>
+      <p>
+        <strong>Student 2:</strong> Danidu Herath |
+        <strong>ID:</strong> w2212829
+      </p>
+      <p>
+        <a href="home.html">EcoSphere Home</a>
+        <a href="validation_ST2.html">Validation Page</a>
+      </p>
+    </footer>
+  </body>
+</html>

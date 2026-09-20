@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Team | EcoSphere</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: rgba(231, 255, 244, 0.903);
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+      }
+
+      main {
+        padding: 60px 8%;
+      }
+
+      .team-intro {
+        text-align: center;
+        margin-bottom: 50px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .team-intro h1 {
+        font-size: 2.8rem;
+        color: rgb(2, 50, 42);
+        margin: 0 0 16px 0;
+      }
+
+      .team-intro p {
+        font-size: 1.15rem;
+        line-height: 1.6;
+        color: #333333;
+        margin: 0;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        max-width: 1300px;
+        margin: auto;
+      }
+
+      .team-member {
+        background-color: white;
+        border-radius: 15px;
+        padding: 30px 20px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+      }
+
+      .team-member:hover,
+      .team-member:focus {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        outline: 3px solid rgb(5, 75, 63);
+      }
+
+      .team-member img {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+        border: 4px solid #eaf4f1;
+      }
+
+      .team-member:hover img,
+      .team-member:focus img {
+        transform: scale(1.05);
+        border-color: rgb(142, 225, 9);
+      }
+
+      .team-member h2 {
+        margin: 20px 0 6px 0;
+        font-size: 1.4rem;
+        color: rgb(2, 50, 42);
+      }
+
+      .role {
+        font-weight: 700;
+        color: rgb(5, 75, 63);
+        font-size: 0.95rem;
+        margin: 0 0 10px 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .details {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition:
+          max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.4s ease;
+      }
+
+      .team-member:hover .details,
+      .team-member:focus .details {
+        max-height: 180px;
+        opacity: 1;
+      }
+
+      .details p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: #4a5568;
+        margin: 10px 0 0 0;
+        border-top: 1px solid #edf2f7;
+        padding-top: 12px;
+      }
+
+      footer {
+        background-color: rgb(2, 50, 42);
+        color: white;
+        text-align: center;
+        padding: 30px 20px;
+        margin-top: 80px;
+        font-size: 0.95rem;
+      }
+
+      footer p {
+        margin: 8px 0;
+      }
+
+      footer a {
+        color: rgb(142, 225, 9);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .sdg-tag {
+        display: inline-block;
+        margin-top: 12px;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .go-to-top {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        background-color: rgb(5, 75, 63);
+        color: rgb(255, 255, 255);
+        border: 2px solid rgb(142, 225, 9);
+        padding: 10px 14px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 6px;
+        z-index: 100;
+      }
+      .go-to-top:hover,
+      .go-to-top:focus {
+        background-color: rgb(22, 111, 96);
+        color: rgb(255, 255, 255);
+      }
+
+      .floating-top-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: rgb(142, 225, 9);
+        color: rgb(2, 50, 42);
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        z-index: 100;
+      }
+      .floating-top-btn:hover,
+      .floating-top-btn:focus {
+        background-color: rgb(155, 245, 15);
+        transform: translateY(-3px);
+      }
+
+      .floating-top-btn.hide-until-scroll {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease,
+          visibility 0.25s;
+      }
+      .floating-top-btn.hide-until-scroll.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body id="top">
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="home.html">&#10052; EcoSphere</a>
+        </div>
+
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="profile.html">User Profile</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li>
+            <a class="active" aria-current="page" href="team.html">Team</a>
+          </li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="team-intro">
+        <h1>Meet Our Team</h1>
+        <p>
+          Our team works together to promote effective climate communication. We
+          aim to make climate information easier to understand and encourage
+          people to take meaningful action for a more sustainable future.
+        </p>
+      </section>
+
+      <section class="team-grid" aria-label="Our team members">
+        <article class="team-member" tabindex="0">
+          <img src="additionals/profile-pic.jpg" alt="Portrait of Student 1" />
+          <h2>Student 1 - Dunith Peiris</h2>
+          <p class="role">Template, Gallery & Home Page</p>
+          <div class="details">
+            <p>
+              Responsible for creating the shared website template, navigation
+              system,gallery and the Home Page. Their work helped create a
+              consistent visual style throughout the website and played a
+              crucial role as the backbone of the website.
+            </p>
+          </div>
+        </article>
+
+        <article class="team-member" tabindex="0">
+          <img src="additionals/profile-pic.jpg" alt="Portrait of Student 2" />
+          <h2>Student 2 - Danidu Herath</h2>
+          <p class="role">Quiz and the Splash screen</p>
+          <div class="details">
+            <p>
+              Responsible for developing the Quiz and the splash screen. Their
+              work encourages visitors to explore the website and have a fun and
+              educational experience.
+            </p>
+          </div>
+        </article>
+
+        <article class="team-member" tabindex="0">
+          <img src="additionals/profile-pic.jpg" alt="Portrait of Student 3" />
+          <h2>Student 3 - Nicola Fernando</h2>
+          <p class="role">Feedback & Team Page</p>
+          <div class="details">
+            <p>
+              Responsible for developing the Feedback and the team page. The
+              Feedback page allows users to explore climate initiatives and
+              share their thoughts.Student 3 made sure the entire teams
+              contributions were noticed.
+            </p>
+          </div>
+        </article>
+
+        <article class="team-member" tabindex="0">
+          <img src="additionals/profile-pic.jpg" alt="Portrait of Student 4" />
+          <h2>Student 4 - Vanuja Liyanage</h2>
+          <p class="role">User Profile & Sitemap</p>
+          <div class="details">
+            <p>
+              Responsible for creating the interactive User Profile and the
+              Sitemap. Their work improves website navigation and allows users
+              to explore the website structure.
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        <strong>Student 1:</strong> Nicola Fernando |
+        <strong>ID:</strong> w2212827
+      </p>
+      <p>
+        <a href="pageEditor_ST3.html">Page Editor</a>
+        <a href="validation_ST3.html">Validation</a>
+      </p>
+      <p class="sdg-tag">
+        This website promotes awareness and action related to SDG 13: Climate
+        Action.
+      </p>
+    </footer>
+    <a class="floating-top-btn" href="#top">&#8593; Go to Top</a>
+    <script>
+      (function () {
+        var btn = document.querySelector(".floating-top-btn");
+        if (!btn) return;
+        btn.classList.add("hide-until-scroll");
+        function toggle() {
+          if (window.scrollY > 200) {
+            btn.classList.add("show");
+          } else {
+            btn.classList.remove("show");
+          }
+        }
+        window.addEventListener("scroll", toggle, { passive: true });
+        toggle();
+      })();
+    </script>
+  </body>
+</html>

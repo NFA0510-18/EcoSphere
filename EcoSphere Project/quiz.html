@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Climate Action Quiz | EcoSphere</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* 1. Responsive grid that organises the action cards into columns */
+      .action-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 18px;
+        margin-top: 10px;
+      }
+
+      /* 2. Base look of an (unselected) action card */
+      .action-card {
+        background-color: rgb(255, 255, 255);
+        border: 3px solid rgb(184, 211, 199);
+        border-radius: 8px;
+        padding: 14px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      /* 3. Hover / keyboard-focus feedback so users know cards are interactive */
+      .action-card:hover,
+      .action-card:focus {
+        border-color: rgb(22, 111, 96);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(23, 54, 47, 0.22);
+        outline: none;
+      }
+
+      /* 4. Clear visual state for a SELECTED card */
+      .action-card.selected {
+        border-color: rgb(87, 144, 0);
+        background-color: rgb(220, 241, 231);
+        box-shadow: 0 0 0 3px rgba(142, 225, 9, 0.55);
+      }
+
+      /* 5. Thumbnail image inside each card */
+      .action-thumb {
+        width: 100%;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 6px;
+        border: 1px solid rgb(184, 211, 199);
+      }
+
+      /* 6. Card title and points styling */
+      .action-card p.action-title {
+        color: rgb(5, 75, 63);
+        margin: 10px 0 4px 0;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .action-card p {
+        font-size: 14px;
+        margin: 0 0 8px 0;
+      }
+
+      .impact-points {
+        display: inline-block;
+        background-color: rgb(5, 75, 63);
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        font-size: 13px;
+        border-radius: 14px;
+        padding: 3px 12px;
+      }
+
+      /* 7. Feedback panel that updates with the user's score */
+      .feedback-panel {
+        background-color: rgb(246, 253, 249);
+        border: 1px solid rgb(184, 211, 199);
+        border-left: 6px solid rgb(22, 111, 96);
+        padding: 20px;
+        margin-top: 22px;
+      }
+
+      .feedback-panel h2 {
+        margin-top: 0;
+      }
+
+      .score-line {
+        font-size: 17px;
+        margin: 6px 0;
+      }
+
+      .score-value {
+        font-weight: bold;
+        color: rgb(5, 75, 63);
+      }
+
+      #impact-level {
+        font-weight: bold;
+      }
+
+      /* 8. The <main> gets a JS-controlled background image for each impact level.
+              an overlay keeps the text readable behind the image. */
+      .quiz-main {
+        background-size: cover;
+        background-position: center;
+        transition: background-image 0.4s ease;
+      }
+
+      /* Green-pill "Go to Top" (matches the content page) */
+      .floating-top-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: rgb(142, 225, 9);
+        color: rgb(2, 50, 42);
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        z-index: 100;
+      }
+      .floating-top-btn:hover,
+      .floating-top-btn:focus {
+        background-color: rgb(155, 245, 15);
+        transform: translateY(-3px);
+      }
+
+      /* Hidden until the user scrolls (JS adds the class; without JS it stays visible) */
+      .floating-top-btn.hide-until-scroll {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease,
+          visibility 0.25s;
+      }
+      .floating-top-btn.hide-until-scroll.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body id="top">
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="home.html">&#10052; EcoSphere</a>
+        </div>
+
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li>
+            <a class="active" aria-current="page" href="quiz.html">Quiz</a>
+          </li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="profile.html">User Profile</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="page-container quiz-main" id="quizMain">
+      <section class="page-introduction">
+        <p class="small-heading">SDG 13: CLIMATE ACTION</p>
+        <h1>Climate Action Quiz</h1>
+        <p>
+          This is not a test. There are no wrong answers. Select the everyday
+          climate actions you could realistically take. As you choose, the quiz
+          adds up your impact score, shows your overall impact level and changes
+          the background to match it.
+        </p>
+      </section>
+
+      <section class="content-panel">
+        <h2>Pick Your Actions</h2>
+        <p>
+          Click a card to select or unselect it. Each action is worth a number
+          of impact points.
+        </p>
+
+        <!-- At least six action cards, created as HTML elements -->
+        <div class="action-grid" id="actionGrid">
+          <div
+            class="action-card"
+            tabindex="0"
+            role="button"
+            aria-pressed="false"
+            data-points="2"
+          >
+            <img
+              class="action-thumb"
+              src="images/recycle.svg"
+              alt="Recycling arrows symbol"
+            />
+            <p class="action-title">Recycle &amp; sort waste</p>
+            <p>Separate paper, glass and plastic so materials can be reused.</p>
+            <span class="impact-points">2 points</span>
+          </div>
+
+          <div
+            class="action-card"
+            tabindex="0"
+            role="button"
+            aria-pressed="false"
+            data-points="3"
+          >
+            <img class="action-thumb" src="images/cycle.svg" alt="Bicycle" />
+            <p class="action-title">Cycle or walk</p>
+            <p>Swap a short car trip for cycling or walking each week.</p>
+            <span class="impact-points">3 points</span>
+          </div>
+
+          <div
+            class="action-card"
+            tabindex="0"
+            role="button"
+            aria-pressed="false"
+            data-points="3"
+          >
+            <img
+              class="action-thumb"
+              src="images/public-transport.svg"
+              alt="Public bus"
+            />
+            <p class="action-title">Use public transport</p>
+            <p>Take the bus or train instead of driving alone.</p>
+            <span class="impact-points">3 points</span>
+          </div>
+
+          <div
+            class="action-card"
+            tabindex="0"
+            role="button"
+            aria-pressed="false"
+            data-points="4"
+          >
+            <img
+              class="action-thumb"
+              src="images/plant-based.svg"
+              alt="Plate with a leaf"
+            />
+            <p class="action-title">Eat more plant-based</p>
+            <p>Choose meat-free meals a few days each week.</p>
+            <span class="impact-points">4 points</span>
+          </div>
+
+          <div
+            class="action-card"
+            tabindex="0"
+            role="button"
+            aria-pressed="false"
+            data-points="3"
+          >
+            <img
+              class="action-thumb"
+              src="images/save-energy.svg"
+              alt="Light bulb"
+            />
+            <p class="action-title">Save home energy</p>
+            <p>Switch to LED bulbs and turn off unused devices.</p>
+            <span class="impact-points">3 points</span>
+          </div>
+
+          <div
+            class="action-card"
+            tabindex="0"
+            role="button"
+            aria-pressed="false"
+            data-points="2"
+          >
+            <img
+              class="action-thumb"
+              src="images/reduce-water.svg"
+              alt="Water drop"
+            />
+            <p class="action-title">Reduce water use</p>
+            <p>Take shorter showers and fix dripping taps.</p>
+            <span class="impact-points">2 points</span>
+          </div>
+
+          <div
+            class="action-card"
+            tabindex="0"
+            role="button"
+            aria-pressed="false"
+            data-points="2"
+          >
+            <img
+              class="action-thumb"
+              src="images/reusable-bottle.svg"
+              alt="Reusable water bottle"
+            />
+            <p class="action-title">Use reusable items</p>
+            <p>Carry a refillable bottle and reusable shopping bags.</p>
+            <span class="impact-points">2 points</span>
+          </div>
+
+          <div
+            class="action-card"
+            tabindex="0"
+            role="button"
+            aria-pressed="false"
+            data-points="5"
+          >
+            <img
+              class="action-thumb"
+              src="images/plant-tree.svg"
+              alt="Young tree"
+            />
+            <p class="action-title">Plant or protect trees</p>
+            <p>Join a local tree-planting or clean-up event.</p>
+            <span class="impact-points">5 points</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Feedback area that updates dynamically using JavaScript -->
+      <section class="feedback-panel" id="feedbackPanel">
+        <h2>Your Impact</h2>
+        <p class="score-line">
+          Actions selected:
+          <span class="score-value" id="countSelected">0</span>
+        </p>
+        <p class="score-line">
+          Total impact score: <span class="score-value" id="totalScore">0</span>
+        </p>
+        <p class="score-line">
+          Impact level: <span id="impact-level">None yet</span>
+        </p>
+        <p id="impact-message">
+          Select some actions above to see the impact of your choices.
+        </p>
+        <div class="button-area">
+          <button class="button clear-button" id="resetButton" type="button">
+            Reset choices
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        <strong>Student 2:</strong> Danidu Herath |
+        <strong>ID:</strong> w2212829
+      </p>
+      <p>
+        <a href="pageEditor_ST2.html">Page Editor</a>
+        <a href="validation_ST2.html">Validation Page</a>
+      </p>
+    </footer>
+
+    <script>
+      let cards = document.querySelectorAll(".action-card");
+      let quizMain = document.getElementById("quizMain");
+      let countSelected = document.getElementById("countSelected");
+      let totalScore = document.getElementById("totalScore");
+      let impactLevel = document.getElementById("impact-level");
+      let impactMessage = document.getElementById("impact-message");
+
+      // Toggle a card's selected state (works for both click and keyboard).
+      function toggleCard(card) {
+        if (card.classList.contains("selected")) {
+          card.classList.remove("selected");
+          card.setAttribute("aria-pressed", "false");
+        } else {
+          card.classList.add("selected");
+          card.setAttribute("aria-pressed", "true");
+        }
+        updateFeedback();
+      }
+
+      // Add up the points of every selected card and update the feedback area.
+      function updateFeedback() {
+        let score = 0;
+        let selectedCount = 0;
+
+        for (let i = 0; i < cards.length; i++) {
+          if (cards[i].classList.contains("selected")) {
+            score = score + Number(cards[i].getAttribute("data-points"));
+            selectedCount = selectedCount + 1;
+          }
+        }
+
+        countSelected.innerHTML = selectedCount;
+        totalScore.innerHTML = score;
+
+        // Decide the impact level and matching background image.
+        if (score === 0) {
+          impactLevel.innerHTML = "None yet";
+          impactMessage.innerHTML =
+            "Select some actions above to see the impact of your choices.";
+          quizMain.style.backgroundImage = "none";
+        } else if (score <= 5) {
+          impactLevel.innerHTML = "Low impact";
+          impactMessage.innerHTML =
+            "A good start. Every small action counts, so try adding a few more.";
+          quizMain.style.backgroundImage =
+            "linear-gradient(rgba(255,255,255,0.82), rgba(255,255,255,0.82)), url('images/bg-low.svg')";
+        } else if (score <= 11) {
+          impactLevel.innerHTML = "Medium impact";
+          impactMessage.innerHTML =
+            "Great progress! Your choices are making a real difference.";
+          quizMain.style.backgroundImage =
+            "linear-gradient(rgba(255,255,255,0.82), rgba(255,255,255,0.82)), url('images/bg-medium.svg')";
+        } else {
+          impactLevel.innerHTML = "High impact";
+          impactMessage.innerHTML =
+            "Excellent commitment! Consider sharing these actions with others.";
+          quizMain.style.backgroundImage =
+            "linear-gradient(rgba(255,255,255,0.80), rgba(255,255,255,0.80)), url('images/bg-high.svg')";
+        }
+      }
+
+      // Attach click and keyboard (Enter / Space) listeners to each card.
+      for (let i = 0; i < cards.length; i++) {
+        cards[i].addEventListener("click", function () {
+          toggleCard(this);
+        });
+        cards[i].addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleCard(this);
+          }
+        });
+      }
+
+      // Reset button clears every selection.
+      document
+        .getElementById("resetButton")
+        .addEventListener("click", function () {
+          for (let i = 0; i < cards.length; i++) {
+            cards[i].classList.remove("selected");
+            cards[i].setAttribute("aria-pressed", "false");
+          }
+          updateFeedback();
+        });
+    </script>
+    <a class="floating-top-btn" href="#top">&#8593; Go to Top</a>
+    <script>
+      // Reveal the Go to Top button only after the user scrolls down a little.
+      (function () {
+        var btn = document.querySelector(".floating-top-btn");
+        if (!btn) return;
+        btn.classList.add("hide-until-scroll");
+        function toggle() {
+          if (window.scrollY > 200) {
+            btn.classList.add("show");
+          } else {
+            btn.classList.remove("show");
+          }
+        }
+        window.addEventListener("scroll", toggle, { passive: true });
+        toggle();
+      })();
+    </script>
+  </body>
+</html>

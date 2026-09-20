@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img">
+<rect width="800" height="500" fill="#E7FFF4"/>
+<rect x="0" y="360" width="800" height="140" fill="#DCF1E7"/>
+<circle cx="120" cy="120" r="45" fill="#8EE109"/>
+<g stroke="#8EE109" stroke-width="6" stroke-linecap="round">
+<line x1="120" y1="55" x2="120" y2="35"/><line x1="120" y1="205" x2="120" y2="185"/>
+<line x1="55" y1="120" x2="35" y2="120"/><line x1="205" y1="120" x2="185" y2="120"/>
+</g>
+<rect x="300" y="300" width="200" height="70" fill="#166F60"/>
+<g stroke="#054B3F" stroke-width="5">
+<line x1="330" y1="300" x2="330" y2="230"/><line x1="470" y1="300" x2="470" y2="230"/>
+</g>
+<g fill="#054B3F">
+<polygon points="330,230 315,200 345,200"/><polygon points="330,230 300,215 300,245"/><polygon points="330,230 360,215 360,245"/>
+<polygon points="470,230 455,200 485,200"/><polygon points="470,230 440,215 440,245"/><polygon points="470,230 500,215 500,245"/>
+</g>
+<rect x="600" y="270" width="120" height="100" fill="#8EE109" stroke="#054B3F" stroke-width="4"/>
+<line x1="600" y1="303" x2="720" y2="303" stroke="#054B3F" stroke-width="3"/>
+<line x1="600" y1="336" x2="720" y2="336" stroke="#054B3F" stroke-width="3"/>
+<line x1="640" y1="270" x2="640" y2="370" stroke="#054B3F" stroke-width="3"/>
+<line x1="680" y1="270" x2="680" y2="370" stroke="#054B3F" stroke-width="3"/>
+<text x="400" y="450" font-family="Arial" font-size="26" fill="#054B3F" text-anchor="middle" font-weight="bold">Sharing renewable energy technology</text>
+</svg>

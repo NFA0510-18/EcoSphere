@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <title>EcoSphere - Home</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: rgba(231, 255, 244, 0.903);
+      }
+
+      #video {
+        position: relative;
+        width: 100%;
+        height: 450px;
+        overflow: hidden;
+        border-bottom: 10px solid rgb(142, 225, 9);
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+      }
+
+      .waterfall-mp4 {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+      }
+
+      #video:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(5, 75, 63, 0.55),
+          rgba(5, 75, 63, 0.75)
+        );
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+      }
+
+      .video-text {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #fff;
+        padding: 0 20px;
+      }
+
+      .video-text h1 {
+        margin: 0 0 8px;
+        font-size: clamp(2rem, 4vw, 4.5rem);
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+      .video-text h2 {
+        margin: 0;
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        opacity: 0.9;
+        font-weight: normal;
+      }
+
+      #introduction {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #introduction h2 {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+        color: rgb(142, 225, 9);
+        border: 2px solid #025844;
+        border-radius: 10px;
+        padding: 10px 15px;
+        display: inline-block;
+        background-color: #025844;
+      }
+
+      .goals {
+        display: flex;
+        gap: 20px;
+        padding: 40px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .goal-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        min-width: 200px;
+        max-width: 300px;
+      }
+
+      .number {
+        font-size: 2.8rem;
+        font-weight: bold;
+        color: #025844;
+        margin-bottom: 10px;
+        font-family:
+          "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+
+      .arrow {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #025844;
+        align-self: center;
+        margin-top: 30px;
+      }
+
+      .goal1,
+      .goal2,
+      .goal3 {
+        width: 100%;
+        text-align: center;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+      }
+
+      .goal1,
+      .goal3 {
+        background-color: #025844;
+        color: #fff;
+      }
+
+      .goal2 {
+        background-color: #ffffff;
+        color: #025844;
+        border: 5px solid #025844;
+      }
+
+      .goals h3 {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+
+      .divider {
+        border: 0;
+        height: 5px;
+        background-color: rgb(142, 225, 9);
+        max-width: 1200px;
+        width: 90%;
+        margin: 20px auto;
+        border-radius: 5px;
+      }
+
+      .card-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        max-width: 1200px;
+        width: 90%;
+        margin: 30px auto;
+      }
+
+      .info-card {
+        background-color: #fff;
+        border: 1px solid #b5b5b5;
+        border-radius: 20px;
+        padding: 20px;
+        width: 100%;
+        min-height: 260px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        box-sizing: border-box;
+        transition:
+          transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+          box-shadow 0.3s ease;
+        will-change: transform;
+      }
+
+      .card-link:hover .info-card {
+        transform: scale(1.03);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .info-card img {
+        width: 350px;
+        height: 230px;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        flex-shrink: 0;
+      }
+
+      .info-text {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        color: #333;
+      }
+
+      .card-link:nth-child(even) .info-card {
+        flex-direction: row-reverse;
+      }
+
+      footer {
+        background-color: rgb(5, 75, 63);
+        color: rgb(255, 255, 255);
+        border-top: 5px solid rgb(142, 225, 9);
+        padding: 20px 15px;
+        text-align: center;
+      }
+
+      footer p {
+        margin: 5px 0;
+      }
+
+      footer a {
+        display: inline-block;
+        color: rgb(169, 244, 49);
+        margin: 3px 8px;
+      }
+
+      footer a:hover,
+      footer a:focus {
+        color: rgb(255, 255, 255);
+      }
+
+      .go-to-top {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        background-color: rgb(5, 75, 63);
+        color: rgb(255, 255, 255);
+        border: 2px solid rgb(142, 225, 9);
+        padding: 10px 14px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 6px;
+        z-index: 100;
+      }
+      .go-to-top:hover,
+      .go-to-top:focus {
+        background-color: rgb(22, 111, 96);
+        color: rgb(255, 255, 255);
+      }
+
+      .floating-top-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: rgb(142, 225, 9);
+        color: rgb(2, 50, 42);
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        z-index: 100;
+      }
+      .floating-top-btn:hover,
+      .floating-top-btn:focus {
+        background-color: rgb(155, 245, 15);
+        transform: translateY(-3px);
+      }
+
+      .floating-top-btn.hide-until-scroll {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease,
+          visibility 0.25s;
+      }
+      .floating-top-btn.hide-until-scroll.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body id="top">
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="home.html">&#10052; EcoSphere</a>
+        </div>
+
+        <ul>
+          <li>
+            <a class="active" aria-current="page" href="home.html">Home</a>
+          </li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="profile.html">User Profile</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="video">
+        <video class="waterfall-mp4" autoplay muted loop playsinline>
+          <source src="additionals/forest-waterfall.mp4" type="video/mp4" />
+        </video>
+        <div class="video-text">
+          <h1>"Even the smallest contributions can make a difference"</h1>
+          <h2>---Small steps towards real climate impact---</h2>
+        </div>
+      </section>
+
+      <section id="introduction">
+        <h2>The goals of EcoSphere</h2>
+      </section>
+
+      <section class="goals">
+        <div class="goal-step">
+          <span class="number">1</span>
+          <div class="goal1">
+            <h3>Help you understand the stakes at hand</h3>
+          </div>
+        </div>
+
+        <span class="arrow">&#8594;</span>
+
+        <div class="goal-step">
+          <span class="number">2</span>
+          <div class="goal2">
+            <h3>Guiding you on how to act</h3>
+          </div>
+        </div>
+
+        <span class="arrow">&#8594;</span>
+
+        <div class="goal-step">
+          <span class="number">3</span>
+          <div class="goal3">
+            <h3>Minimizing the disastrous impacts</h3>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <section id="content">
+        <a href="content_ST4.html" class="card-link">
+          <div class="info-card">
+            <img src="additionals/content1.png" alt="Business environment" />
+            <div class="info-text">
+              <h2>Cooperative Climate Action in Business &amp; Industry</h2>
+              <p>
+                Businesses influence energy use, transport and materials. Their
+                climate action becomes stronger when companies cooperate instead
+                of trying to solve every problem alone. This page explains
+                methods that cooperation can support cleaner industry.
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <a href="content_ST1.html" class="card-link">
+          <div class="info-card">
+            <img src="additionals/turbines.jpg" alt="Wind Turbines" />
+            <div class="info-text">
+              <h2>Renewable Energy Transitions in Communities</h2>
+              <p>
+                Renewable Energy Transitions in Communities represents the
+                collective shift toward sustainable, decentralized power
+                generation. This local strategy minimizes fossil fuel reliance,
+                making it a powerful vehicle for achieving the ultimate climate
+                action objective.
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <a href="content_ST3.html" class="card-link">
+          <div class="info-card">
+            <img src="additionals/content3.jpg" alt="Climate Communication" />
+            <div class="info-text">
+              <h2>Climate Communication</h2>
+              <p>
+                Climate communication helps people understand climate change,
+                its impacts and the actions that can be taken to protect the
+                environment. Clear and reliable communication can connect
+                scientific information with everyday life.
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <a href="content_ST2.html" class="card-link">
+          <div class="info-card">
+            <img src="additionals/content4.jpg" alt="Global Technology" />
+            <div class="info-text">
+              <h2>Global Technology &amp; Knowledge Sharing</h2>
+              <p>
+                No single country holds every answer to climate change. Progress
+                moves faster when nations, researchers and communities share
+                what works. This page explains four ways that sharing technology
+                and knowledge can strengthen climate action around the world.
+              </p>
+            </div>
+          </div>
+        </a>
+      </section>
+
+      <footer>
+        <p>
+          <strong>Student 1:</strong> Dunith Peiris |
+          <strong>ID:</strong> w2212825
+        </p>
+        <p>
+          <a href="pageEditor_ST1.html">Page Editor</a>
+          <a href="validation_ST1.html">Validation Page</a>
+        </p>
+      </footer>
+    </main>
+    <a class="floating-top-btn" href="#top">&#8593; Go to Top</a>
+    <script>
+      (function () {
+        var btn = document.querySelector(".floating-top-btn");
+        if (!btn) return;
+        btn.classList.add("hide-until-scroll");
+        function toggle() {
+          if (window.scrollY > 200) {
+            btn.classList.add("show");
+          } else {
+            btn.classList.remove("show");
+          }
+        }
+        window.addEventListener("scroll", toggle, { passive: true });
+        toggle();
+      })();
+    </script>
+  </body>
+</html>

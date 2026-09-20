@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: rgb(2, 50, 42);
+  background-image: url("images/splash-bg.svg");
+  background-position: center;
+  background-size: cover;
+  color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.splash-wrap {
+  width: 90%;
+  max-width: 720px;
+  padding: 38px 24px;
+  text-align: center;
+}
+
+.splash-logo {
+  color: rgb(169, 244, 49);
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 48px;
+  margin: 0 0 6px 0;
+}
+
+.splash-tagline {
+  color: rgb(199, 246, 125);
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 0 0 22px 0;
+}
+
+.splash-mission {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 auto 24px auto;
+}
+
+.splash-team {
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  padding: 16px 0;
+}
+
+.splash-team h2 {
+  color: rgb(169, 244, 49);
+  margin: 0 0 8px 0;
+}
+
+.splash-team ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.splash-team li {
+  margin: 4px 0;
+}
+
+.loader {
+  width: 42px;
+  height: 42px;
+  border: 5px solid rgba(255, 255, 255, 0.35);
+  border-top-color: rgb(169, 244, 49);
+  border-radius: 50%;
+  margin: 24px auto 12px auto;
+  animation: spin 1s linear infinite;
+}
+
+.countdown {
+  font-weight: bold;
+  margin: 8px 0 18px 0;
+}
+
+.skip-button {
+  display: inline-block;
+  background-color: rgb(142, 225, 9);
+  color: rgb(2, 50, 42);
+  border: 2px solid rgb(169, 244, 49);
+  padding: 10px 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.skip-button:hover,
+.skip-button:focus {
+  background-color: rgb(255, 255, 255);
+  outline: 3px solid rgb(169, 244, 49);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

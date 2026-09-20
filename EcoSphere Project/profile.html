@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile | EcoSphere</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .floating-top-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: rgb(142, 225, 9);
+        color: rgb(2, 50, 42);
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        z-index: 100;
+      }
+      .floating-top-btn:hover,
+      .floating-top-btn:focus {
+        background-color: rgb(155, 245, 15);
+        transform: translateY(-3px);
+      }
+
+      .floating-top-btn.hide-until-scroll {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease,
+          visibility 0.25s;
+      }
+      .floating-top-btn.hide-until-scroll.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body id="top">
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="home.html">&#10052; EcoSphere</a>
+        </div>
+
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li>
+            <a class="active" aria-current="page" href="profile.html"
+              >User Profile</a
+            >
+          </li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="page-container">
+      <section class="page-introduction">
+        <p class="small-heading">STUDENT 4 PROJECT</p>
+        <h1>Create Your Climate Profile</h1>
+        <p>
+          Your profile starts empty. Select Step 1 and enter your own details
+          using the prompts.
+        </p>
+      </section>
+
+      <section class="content-panel">
+        <h2>Profile Builder</h2>
+        <p>
+          There are three steps with three questions in each step. Questions and
+          steps can be skipped.
+        </p>
+
+        <div class="button-area">
+          <button class="button" id="step1Button" type="button">
+            Step 1: Basic Details
+          </button>
+          <button class="button hidden-button" id="step2Button" type="button">
+            Step 2: Climate Interests
+          </button>
+          <button class="button hidden-button" id="step3Button" type="button">
+            Step 3: Action Plan
+          </button>
+          <button
+            class="button missing-button hidden-button"
+            id="missingButton"
+            type="button"
+          >
+            Complete Skipped Prompts
+          </button>
+          <button class="button clear-button" id="clearButton" type="button">
+            Clear Profile
+          </button>
+        </div>
+
+        <p class="message" id="message">
+          No profile details have been added yet.
+        </p>
+
+        <div class="progress-area">
+          <h3>Profile Completion</h3>
+          <div class="progress-track">
+            <div class="progress-bar" id="progressBar">0%</div>
+          </div>
+          <p id="progressText">0 of 9 prompts completed</p>
+        </div>
+      </section>
+
+      <section class="profile-area" id="profileArea">
+        <h2>Your EcoSphere Profile</h2>
+
+        <section class="profile-section" id="basicSection">
+          <h3>1. Basic Details</h3>
+          <ul class="profile-list" id="basicList"></ul>
+        </section>
+
+        <section class="profile-section" id="interestSection">
+          <h3>2. Climate Interests</h3>
+          <ul class="profile-list" id="interestList"></ul>
+        </section>
+
+        <section class="profile-section" id="actionSection">
+          <h3>3. Action Plan</h3>
+          <ul class="profile-list" id="actionList"></ul>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        <strong>Student 4:</strong> Vanuja Liyanage |
+        <strong>ID:</strong> w2212832
+      </p>
+      <p>
+        <a href="pageEditor_ST4.html">Page Editor</a>
+        <a href="validation_ST4.html">Validation Page</a>
+      </p>
+    </footer>
+
+    <script>
+      let userName = "";
+      let userRole = "";
+      let userLocation = "";
+      let mainInterest = "";
+      let currentHabit = "";
+      let learningGoal = "";
+      let nextAction = "";
+      let supportNeeded = "";
+      let climatePledge = "";
+
+      function askQuestion(question, oldAnswer) {
+        let answer = prompt(question);
+
+        if (answer !== null && answer !== "") {
+          return answer;
+        }
+
+        return oldAnswer;
+      }
+
+      function answeredYes(choice) {
+        if (choice === "yes" || choice === "Yes" || choice === "YES") {
+          return true;
+        }
+
+        return false;
+      }
+
+      function completeStepOne() {
+        let choice = prompt(
+          "Step 1: Type yes to add basic details, or leave blank to skip this step.",
+        );
+
+        if (answeredYes(choice) === true) {
+          userName = askQuestion(
+            "What is your name? Leave blank to skip.",
+            userName,
+          );
+          userRole = askQuestion(
+            "What is your role? For example: student or volunteer.",
+            userRole,
+          );
+          userLocation = askQuestion(
+            "Which city or area are you from?",
+            userLocation,
+          );
+          document.getElementById("message").innerHTML =
+            "Step 1 has been checked. Continue to Step 2.";
+        } else {
+          document.getElementById("message").innerHTML =
+            "Step 1 was skipped. You can return to it later.";
+        }
+
+        document.getElementById("step2Button").style.display = "inline-block";
+        updateProfile();
+      }
+
+      function completeStepTwo() {
+        let choice = prompt(
+          "Step 2: Type yes to add climate interests, or leave blank to skip this step.",
+        );
+
+        if (answeredYes(choice) === true) {
+          mainInterest = askQuestion(
+            "Which topic interests you most: recycling, energy, water or wildlife?",
+            mainInterest,
+          );
+          currentHabit = askQuestion(
+            "Name one environmentally friendly habit you already practise.",
+            currentHabit,
+          );
+          learningGoal = askQuestion(
+            "What climate topic would you like to learn more about?",
+            learningGoal,
+          );
+          document.getElementById("message").innerHTML =
+            "Step 2 has been checked. Continue to Step 3.";
+        } else {
+          document.getElementById("message").innerHTML =
+            "Step 2 was skipped. You can return to it later.";
+        }
+
+        document.getElementById("step3Button").style.display = "inline-block";
+        updateProfile();
+      }
+
+      function completeStepThree() {
+        let choice = prompt(
+          "Step 3: Type yes to add an action plan, or leave blank to skip this step.",
+        );
+
+        if (answeredYes(choice) === true) {
+          nextAction = askQuestion(
+            "What small climate action will you take this week?",
+            nextAction,
+          );
+          supportNeeded = askQuestion(
+            "What support would help you complete this action?",
+            supportNeeded,
+          );
+          climatePledge = askQuestion(
+            "Write a short personal climate pledge.",
+            climatePledge,
+          );
+          document.getElementById("message").innerHTML =
+            "Step 3 has been checked. Your profile has been updated.";
+        } else {
+          document.getElementById("message").innerHTML =
+            "Step 3 was skipped. You can complete it later.";
+        }
+
+        document.getElementById("missingButton").style.display = "inline-block";
+        updateProfile();
+      }
+
+      function completeSkippedPrompts() {
+        let missingFound = false;
+
+        if (userName === "") {
+          missingFound = true;
+          userName = askQuestion(
+            "Missing detail: What is your name?",
+            userName,
+          );
+        }
+        if (userRole === "") {
+          missingFound = true;
+          userRole = askQuestion(
+            "Missing detail: What is your role?",
+            userRole,
+          );
+        }
+        if (userLocation === "") {
+          missingFound = true;
+          userLocation = askQuestion(
+            "Missing detail: Which city or area are you from?",
+            userLocation,
+          );
+        }
+        if (mainInterest === "") {
+          missingFound = true;
+          mainInterest = askQuestion(
+            "Missing detail: Which climate topic interests you most?",
+            mainInterest,
+          );
+        }
+        if (currentHabit === "") {
+          missingFound = true;
+          currentHabit = askQuestion(
+            "Missing detail: Name one environmentally friendly habit.",
+            currentHabit,
+          );
+        }
+        if (learningGoal === "") {
+          missingFound = true;
+          learningGoal = askQuestion(
+            "Missing detail: What climate topic would you like to learn?",
+            learningGoal,
+          );
+        }
+        if (nextAction === "") {
+          missingFound = true;
+          nextAction = askQuestion(
+            "Missing detail: What climate action will you take this week?",
+            nextAction,
+          );
+        }
+        if (supportNeeded === "") {
+          missingFound = true;
+          supportNeeded = askQuestion(
+            "Missing detail: What support would help you?",
+            supportNeeded,
+          );
+        }
+        if (climatePledge === "") {
+          missingFound = true;
+          climatePledge = askQuestion(
+            "Missing detail: Write a short climate pledge.",
+            climatePledge,
+          );
+        }
+
+        if (missingFound === false) {
+          document.getElementById("message").innerHTML =
+            "All nine profile prompts are already complete.";
+        } else {
+          document.getElementById("message").innerHTML =
+            "The skipped prompts have been checked.";
+        }
+
+        updateProfile();
+      }
+
+      function showSection(sectionId, numberOfAnswers) {
+        if (numberOfAnswers > 0) {
+          document.getElementById(sectionId).style.display = "block";
+        } else {
+          document.getElementById(sectionId).style.display = "none";
+        }
+      }
+
+      function updateProfile() {
+        let completed = 0;
+        let basicCompleted = 0;
+        let interestCompleted = 0;
+        let actionCompleted = 0;
+        let basicOutput = "";
+        let interestOutput = "";
+        let actionOutput = "";
+
+        if (userName !== "") {
+          basicOutput += "<li><strong>Name:</strong> " + userName + "</li>";
+          completed++;
+          basicCompleted++;
+        }
+        if (userRole !== "") {
+          basicOutput += "<li><strong>Role:</strong> " + userRole + "</li>";
+          completed++;
+          basicCompleted++;
+        }
+        if (userLocation !== "") {
+          basicOutput +=
+            "<li><strong>Location:</strong> " + userLocation + "</li>";
+          completed++;
+          basicCompleted++;
+        }
+        if (mainInterest !== "") {
+          interestOutput +=
+            "<li><strong>Main interest:</strong> " + mainInterest + "</li>";
+          completed++;
+          interestCompleted++;
+        }
+        if (currentHabit !== "") {
+          interestOutput +=
+            "<li><strong>Current habit:</strong> " + currentHabit + "</li>";
+          completed++;
+          interestCompleted++;
+        }
+        if (learningGoal !== "") {
+          interestOutput +=
+            "<li><strong>Learning goal:</strong> " + learningGoal + "</li>";
+          completed++;
+          interestCompleted++;
+        }
+        if (nextAction !== "") {
+          actionOutput +=
+            "<li><strong>Next action:</strong> " + nextAction + "</li>";
+          completed++;
+          actionCompleted++;
+        }
+        if (supportNeeded !== "") {
+          actionOutput +=
+            "<li><strong>Support needed:</strong> " + supportNeeded + "</li>";
+          completed++;
+          actionCompleted++;
+        }
+        if (climatePledge !== "") {
+          actionOutput +=
+            "<li><strong>Climate pledge:</strong> " + climatePledge + "</li>";
+          completed++;
+          actionCompleted++;
+        }
+
+        document.getElementById("basicList").innerHTML = basicOutput;
+        document.getElementById("interestList").innerHTML = interestOutput;
+        document.getElementById("actionList").innerHTML = actionOutput;
+
+        showSection("basicSection", basicCompleted);
+        showSection("interestSection", interestCompleted);
+        showSection("actionSection", actionCompleted);
+
+        if (completed > 0) {
+          document.getElementById("profileArea").style.display = "block";
+        } else {
+          document.getElementById("profileArea").style.display = "none";
+        }
+
+        let percentage = completed * 11;
+        if (completed === 9) {
+          percentage = 100;
+        }
+
+        document.getElementById("progressBar").style.width = percentage + "%";
+        document.getElementById("progressBar").innerHTML = percentage + "%";
+        document.getElementById("progressText").innerHTML =
+          completed + " of 9 prompts completed";
+
+        if (percentage === 100) {
+          document.getElementById("message").innerHTML =
+            "Your EcoSphere profile is 100% complete.";
+        }
+      }
+
+      function clearProfile() {
+        userName = "";
+        userRole = "";
+        userLocation = "";
+        mainInterest = "";
+        currentHabit = "";
+        learningGoal = "";
+        nextAction = "";
+        supportNeeded = "";
+        climatePledge = "";
+
+        document.getElementById("step2Button").style.display = "none";
+        document.getElementById("step3Button").style.display = "none";
+        document.getElementById("missingButton").style.display = "none";
+        document.getElementById("message").innerHTML =
+          "The profile has been cleared. Select Step 1 to begin again.";
+        updateProfile();
+      }
+
+      document
+        .getElementById("step1Button")
+        .addEventListener("click", completeStepOne);
+      document
+        .getElementById("step2Button")
+        .addEventListener("click", completeStepTwo);
+      document
+        .getElementById("step3Button")
+        .addEventListener("click", completeStepThree);
+      document
+        .getElementById("missingButton")
+        .addEventListener("click", completeSkippedPrompts);
+      document
+        .getElementById("clearButton")
+        .addEventListener("click", clearProfile);
+    </script>
+    <a class="floating-top-btn" href="#top">&#8593; Go to Top</a>
+    <script>
+      (function () {
+        var btn = document.querySelector(".floating-top-btn");
+        if (!btn) return;
+        btn.classList.add("hide-until-scroll");
+        function toggle() {
+          if (window.scrollY > 200) {
+            btn.classList.add("show");
+          } else {
+            btn.classList.remove("show");
+          }
+        }
+        window.addEventListener("scroll", toggle, { passive: true });
+        toggle();
+      })();
+    </script>
+  </body>
+</html>

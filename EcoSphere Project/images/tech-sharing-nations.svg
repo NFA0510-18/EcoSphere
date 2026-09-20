@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img">
+<rect width="800" height="500" fill="#E7FFF4"/>
+<circle cx="220" cy="250" r="95" fill="#DCF1E7" stroke="#054B3F" stroke-width="5"/>
+<circle cx="580" cy="250" r="95" fill="#DCF1E7" stroke="#054B3F" stroke-width="5"/>
+<path d="M170 250 q50 -40 100 0 q-50 40 -100 0" fill="#8EE109"/>
+<path d="M530 250 q50 -40 100 0 q-50 40 -100 0" fill="#8EE109"/>
+<circle cx="220" cy="250" r="26" fill="#166F60"/>
+<circle cx="580" cy="250" r="26" fill="#166F60"/>
+<rect x="345" y="150" width="110" height="66" rx="10" fill="#8EE109" stroke="#054B3F" stroke-width="4"/>
+<g stroke="#054B3F" stroke-width="7" stroke-linecap="round" fill="none">
+<path d="M368 176 h58"/><polygon points="426,176 412,168 412,184" fill="#054B3F" stroke="none"/>
+<path d="M432 196 h-58"/><polygon points="374,196 388,188 388,204" fill="#054B3F" stroke="none"/>
+</g>
+<line x1="315" y1="250" x2="485" y2="250" stroke="#054B3F" stroke-width="6" stroke-dasharray="14 10"/>
+<polygon points="470,238 500,250 470,262" fill="#054B3F"/>
+<polygon points="330,238 300,250 330,262" fill="#054B3F"/>
+<text x="400" y="440" font-family="Arial" font-size="26" fill="#054B3F" text-anchor="middle" font-weight="bold">Nations sharing clean technology</text>
+</svg>

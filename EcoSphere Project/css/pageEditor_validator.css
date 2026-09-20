@@ -1,0 +1,719 @@
+/* Shared EcoSphere style sheet for Page Editor and validation pages */
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: rgba(231, 255, 244, 0.903);
+  color: rgb(23, 54, 47);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+/* Shared navigation supplied by the team */
+nav {
+  background-color: rgb(5, 75, 63);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 8px 8px;
+}
+
+.logo {
+  flex: 0 0 auto;
+  font-size: 35px;
+  font-weight: bold;
+  color: rgb(142, 225, 9);
+  letter-spacing: 1px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  white-space: nowrap;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  gap: 6px;
+  margin: 0 0 0 10px;
+  padding: 0;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: bold;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.792);
+  padding: 8px 7px;
+  border-radius: 20px;
+  transition: all 0.25s ease;
+  display: block;
+  white-space: nowrap;
+}
+
+nav a:hover,
+nav a:focus,
+nav a.active {
+  background-color: rgba(255, 255, 255, 0.14);
+  color: rgb(255, 255, 255);
+  transform: translateY(-2px);
+}
+
+.logo a {
+  color: rgb(142, 225, 9);
+  font-size: 35px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  padding: 2px 8px;
+}
+
+.logo a:hover,
+.logo a:focus {
+  background-color: transparent;
+  color: rgb(169, 244, 49);
+  transform: none;
+}
+
+/* Main page layout */
+.page-container {
+  width: 90%;
+  max-width: 1050px;
+  margin: 30px auto 45px auto;
+}
+
+.page-introduction {
+  background-color: rgb(255, 255, 255);
+  border-left: 8px solid rgb(142, 225, 9);
+  border-bottom: 1px solid rgb(184, 211, 199);
+  padding: 25px;
+  margin-bottom: 22px;
+}
+
+.page-introduction h1 {
+  color: rgb(5, 75, 63);
+  font-size: 36px;
+  margin: 3px 0 8px 0;
+}
+
+.page-introduction p {
+  margin-bottom: 0;
+}
+
+.small-heading {
+  color: rgb(61, 126, 15);
+  font-weight: bold;
+  margin: 0;
+}
+
+.content-panel {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(184, 211, 199);
+  padding: 24px;
+}
+
+.content-panel h2,
+.profile-area h2 {
+  color: rgb(5, 75, 63);
+  margin-top: 0;
+}
+
+/* User profile controls */
+.button-area {
+  margin: 18px 0;
+}
+
+.button {
+  display: inline-block;
+  background-color: rgb(5, 75, 63);
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(5, 75, 63);
+  padding: 10px 14px;
+  margin: 4px 4px 4px 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  background-color: rgb(22, 111, 96);
+  border-color: rgb(22, 111, 96);
+}
+
+.missing-button {
+  background-color: rgb(142, 225, 9);
+  border-color: rgb(87, 144, 0);
+  color: rgb(23, 54, 47);
+}
+
+.missing-button:hover,
+.missing-button:focus {
+  background-color: rgb(169, 244, 49);
+  border-color: rgb(87, 144, 0);
+  color: rgb(23, 54, 47);
+}
+
+.clear-button {
+  background-color: rgb(255, 255, 255);
+  color: rgb(5, 75, 63);
+}
+
+.clear-button:hover,
+.clear-button:focus {
+  background-color: rgb(220, 241, 231);
+  border-color: rgb(5, 75, 63);
+  color: rgb(5, 75, 63);
+}
+
+.hidden-button {
+  display: none;
+}
+
+.message {
+  background-color: rgb(220, 241, 231);
+  border-left: 5px solid rgb(22, 111, 96);
+  padding: 11px;
+  font-weight: bold;
+}
+
+.progress-area {
+  border-top: 1px solid rgb(184, 211, 199);
+  margin-top: 22px;
+  padding-top: 12px;
+}
+
+.progress-area h3 {
+  margin: 0 0 8px 0;
+}
+
+.progress-track {
+  width: 100%;
+  height: 28px;
+  background-color: rgb(211, 226, 219);
+  border: 1px solid rgb(108, 139, 126);
+}
+
+.progress-bar {
+  width: 0%;
+  height: 28px;
+  background-color: rgb(22, 111, 96);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  line-height: 28px;
+  text-align: center;
+}
+
+.profile-area {
+  display: none;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(184, 211, 199);
+  padding: 24px;
+  margin-top: 22px;
+}
+
+.profile-section {
+  display: none;
+  background-color: rgb(246, 253, 249);
+  border-left: 6px solid rgb(5, 75, 63);
+  padding: 18px;
+  margin-top: 16px;
+}
+
+.profile-section h3 {
+  color: rgb(22, 111, 96);
+  margin-top: 0;
+}
+
+.profile-list {
+  padding-left: 24px;
+  margin-bottom: 0;
+}
+
+.profile-list li {
+  border-bottom: 1px solid rgb(211, 226, 219);
+  margin-bottom: 7px;
+  padding-bottom: 7px;
+}
+
+/* SVG sitemap */
+.sitemap-container {
+  background-color: rgb(246, 253, 249);
+  border: 1px solid rgb(184, 211, 199);
+  margin-top: 20px;
+  padding: 15px;
+  text-align: center;
+}
+
+.sitemap-svg {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.connector {
+  stroke: rgb(108, 139, 126);
+  stroke-width: 3;
+}
+
+.node-box {
+  fill: rgb(255, 255, 255);
+  stroke: rgb(5, 75, 63);
+  stroke-width: 3;
+}
+
+.node-text,
+.small-node-text,
+.group-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-anchor: middle;
+}
+
+.node-text {
+  fill: rgb(23, 54, 47);
+  font-size: 20px;
+}
+
+.small-node-text {
+  fill: rgb(23, 54, 47);
+  font-size: 18px;
+}
+
+.group-box {
+  fill: rgb(220, 241, 231);
+  stroke: rgb(22, 111, 96);
+  stroke-width: 3;
+}
+
+.group-text {
+  fill: rgb(5, 75, 63);
+  font-size: 20px;
+}
+
+.root-node .node-box {
+  fill: rgb(199, 246, 125);
+}
+
+.home-node .node-box {
+  fill: rgb(220, 241, 231);
+}
+
+.site-node:hover .node-box,
+.site-node:focus .node-box {
+  fill: rgb(142, 225, 9);
+  stroke: rgb(5, 75, 63);
+  stroke-width: 5;
+}
+
+/* Student 4 content page */
+.internal-navigation {
+  margin-bottom: 22px;
+}
+
+.internal-navigation ul {
+  margin-bottom: 0;
+  padding-left: 24px;
+}
+
+.internal-navigation li {
+  margin-bottom: 7px;
+}
+
+.internal-navigation a {
+  color: rgb(5, 75, 63);
+  font-weight: bold;
+}
+
+.internal-navigation a:hover,
+.internal-navigation a:focus {
+  color: rgb(61, 126, 15);
+}
+
+.content-section {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(184, 211, 199);
+  padding: 24px;
+  margin-bottom: 22px;
+}
+
+.content-section h2 {
+  color: rgb(5, 75, 63);
+  margin-top: 0;
+}
+
+.content-section h3 {
+  color: rgb(22, 111, 96);
+}
+
+.content-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  border: 4px solid rgb(220, 241, 231);
+  margin: 18px auto 8px auto;
+  box-shadow: 0 3px 8px rgba(23, 54, 47, 0.22);
+}
+
+.image-caption {
+  color: rgb(61, 83, 76);
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  margin: 0 0 18px 0;
+}
+
+.go-to-top {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  background-color: rgb(5, 75, 63);
+  color: rgb(255, 255, 255);
+  border: 2px solid rgb(142, 225, 9);
+  padding: 10px 13px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.go-to-top:hover,
+.go-to-top:focus {
+  background-color: rgb(22, 111, 96);
+  color: rgb(255, 255, 255);
+}
+
+/* Page Editor and Validation Page */
+.report-section {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(184, 211, 199);
+  padding: 24px;
+  margin-bottom: 22px;
+}
+
+.report-section h2 {
+  color: rgb(5, 75, 63);
+  margin-top: 0;
+}
+
+.report-section h3 {
+  color: rgb(22, 111, 96);
+}
+
+.details-list dt {
+  color: rgb(5, 75, 63);
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.details-list dd {
+  margin-left: 0;
+  border-bottom: 1px solid rgb(211, 226, 219);
+  padding-bottom: 7px;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+.report-table {
+  width: 100%;
+  min-width: 950px;
+  border-collapse: collapse;
+  background-color: rgb(255, 255, 255);
+}
+
+.report-table caption {
+  color: rgb(5, 75, 63);
+  font-weight: bold;
+  text-align: left;
+  padding: 8px 0;
+}
+
+.compact-table {
+  min-width: 650px;
+}
+
+.report-table th,
+.report-table td {
+  border: 1px solid rgb(108, 139, 126);
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.report-table th {
+  background-color: rgb(5, 75, 63);
+  color: rgb(255, 255, 255);
+}
+
+.report-table tr:nth-child(even) {
+  background-color: rgb(246, 253, 249);
+}
+
+.report-links a {
+  display: inline-block;
+  background-color: rgb(220, 241, 231);
+  color: rgb(5, 75, 63);
+  border: 1px solid rgb(108, 139, 126);
+  padding: 7px 10px;
+  margin: 3px 6px 3px 0;
+  font-weight: bold;
+}
+
+.report-links a:hover,
+.report-links a:focus {
+  background-color: rgb(199, 246, 125);
+}
+
+.draft-warning {
+  background-color: rgb(255, 244, 204);
+  color: rgb(70, 53, 8);
+  border-left: 6px solid rgb(194, 142, 0);
+  padding: 13px;
+}
+
+.validation-status {
+  background-color: rgb(220, 241, 231);
+  color: rgb(5, 75, 63);
+  border-left: 6px solid rgb(61, 126, 15);
+  padding: 12px;
+  font-size: 17px;
+}
+
+.validation-output {
+  background-color: rgb(246, 253, 249);
+  border: 1px solid rgb(184, 211, 199);
+  padding: 14px;
+  overflow-x: auto;
+}
+
+.validation-image {
+  display: block;
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  box-sizing: border-box;
+  border: 1px solid rgb(184, 211, 199);
+  margin: 18px auto;
+}
+
+.cover-page {
+  width: 90%;
+  max-width: 850px;
+  margin: 45px auto;
+}
+
+.cover-heading {
+  background-color: rgb(5, 75, 63);
+  color: rgb(255, 255, 255);
+  border-left: 8px solid rgb(142, 225, 9);
+  padding: 35px;
+}
+
+.cover-heading h1 {
+  color: rgb(169, 244, 49);
+  font-size: 42px;
+  margin: 0 0 8px 0;
+}
+
+.cover-heading p {
+  margin: 4px 0;
+}
+
+.cover-details {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(184, 211, 199);
+  padding: 28px;
+}
+
+.cover-links {
+  padding-left: 22px;
+}
+
+.cover-links li {
+  margin-bottom: 8px;
+}
+
+.reference-list li {
+  margin-bottom: 9px;
+}
+
+/* Footer */
+footer {
+  background-color: rgb(5, 75, 63);
+  color: rgb(255, 255, 255);
+  border-top: 5px solid rgb(142, 225, 9);
+  padding: 20px 15px;
+  text-align: center;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer a {
+  display: inline-block;
+  color: rgb(169, 244, 49);
+  margin: 3px 8px;
+}
+
+footer a:hover,
+footer a:focus {
+  color: rgb(255, 255, 255);
+}
+
+.stud {
+  background-color: rgb(211, 226, 219);
+  border: 0;
+  color: rgb(23, 54, 47);
+  margin: 8px 0 0 0;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+.stud h2 {
+  color: rgb(23, 54, 47);
+  margin: 0;
+}
+
+.stud p {
+  margin: 4px 0 0 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 20px 45px 20px;
+}
+
+.container main {
+  flex: 3;
+  min-width: 0;
+}
+
+.container main > section {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(184, 211, 199);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.container main > section h2 {
+  color: rgb(5, 75, 63);
+  margin-top: 0;
+}
+
+.container main > section h3 {
+  color: rgb(22, 111, 96);
+}
+
+.container main a,
+.container aside a {
+  color: rgb(5, 75, 63);
+}
+
+.container main a:hover,
+.container main a:focus,
+.container aside a:hover,
+.container aside a:focus {
+  color: rgb(61, 126, 15);
+}
+
+.container aside {
+  align-self: flex-start;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(184, 211, 199);
+  flex: 1;
+  min-width: 225px;
+  padding: 18px;
+  position: sticky;
+  top: 18px;
+}
+
+.container aside h3 {
+  color: rgb(5, 75, 63);
+  margin-top: 0;
+}
+
+.container aside a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.container aside li {
+  padding-bottom: 6px;
+}
+
+.top-level-ul {
+  padding-left: 20px;
+}
+
+.top-level-ul ul {
+  padding: 6px 0 4px 20px;
+}
+
+.ref li {
+  list-style: none;
+  padding-bottom: 9px;
+}
+
+.top {
+  bottom: 5%;
+  position: fixed;
+  right: 3%;
+  z-index: 10;
+}
+
+.top a {
+  background-color: rgb(5, 75, 63);
+  border: 2px solid rgb(142, 225, 9);
+  color: rgb(255, 255, 255);
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 10px 16px;
+  text-decoration: none;
+}
+
+.top a:hover,
+.top a:focus {
+  background-color: rgb(22, 111, 96);
+  color: rgb(255, 255, 255);
+}
+
+@media (max-width: 850px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .container aside {
+    box-sizing: border-box;
+    min-width: 0;
+    position: static;
+    width: 100%;
+  }
+
+  .stud h2 {
+    font-size: 20px;
+  }
+}

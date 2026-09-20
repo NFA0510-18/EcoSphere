@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <title>Feedback | EcoSphere</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: rgba(231, 255, 244, 0.903);
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+      }
+
+      main {
+        padding: 40px 8%;
+      }
+
+      .feedback-intro {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .feedback-intro h1 {
+        color: rgb(2, 50, 42);
+        font-size: 2.2rem;
+      }
+
+      .programmes-heading h2,
+      #reviews-heading,
+      #feedback-heading {
+        color: rgb(2, 50, 42);
+        margin-top: 40px;
+      }
+
+      .programmes-container {
+        max-height: 540px;
+        overflow-y: auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 2px solid rgb(5, 75, 63);
+        border-radius: 12px;
+        margin-bottom: 40px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .programme-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .programme-card {
+        padding: 20px;
+        border-radius: 12px;
+        background-color: #f1f8e9;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .programme-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+
+      .programme-card h3 {
+        margin: 8px 0;
+        color: rgb(5, 75, 63);
+      }
+
+      .programme-card button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 6px;
+        background-color: rgb(5, 75, 63);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          background-color 0.2s;
+        margin-top: auto;
+      }
+
+      .programme-card button:hover {
+        transform: scale(1.03);
+        background-color: rgb(2, 50, 42);
+      }
+
+      .sort-box {
+        margin-bottom: 20px;
+        padding: 10px;
+        width: auto;
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+      .rating-summary {
+        text-align: center;
+        padding: 25px;
+        margin-bottom: 30px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #c8e6c9;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .rating-summary h3 {
+        margin: 0 0 5px 0;
+        color: rgb(5, 75, 63);
+        font-size: 1.8rem;
+      }
+
+      .review-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .review-card {
+        padding: 20px;
+        border-left: 5px solid rgb(5, 75, 63);
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .review-card h3 {
+        margin: 0 0 10px 0;
+        color: rgb(5, 75, 63);
+      }
+
+      .review-card a {
+        color: rgb(5, 75, 63);
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .feedback-form {
+        max-width: 800px;
+        margin: auto;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      fieldset {
+        margin-bottom: 25px;
+        padding: 20px;
+        border: 2px solid #81c784;
+        border-radius: 10px;
+      }
+
+      legend {
+        font-weight: bold;
+        padding: 5px 10px;
+        color: rgb(5, 75, 63);
+        background-color: white;
+        border-radius: 4px;
+      }
+
+      label {
+        display: block;
+        margin-top: 12px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-family: inherit;
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      .error {
+        color: #b71c1c;
+        font-size: 0.9rem;
+        display: block;
+        margin-top: 4px;
+        min-height: 18px;
+      }
+
+      .success-message {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #c8e6c9;
+        color: #1b5e20;
+        border-radius: 8px;
+        font-weight: bold;
+        display: none;
+        text-align: center;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 15px;
+      }
+
+      .submit-button,
+      .reset-button {
+        flex: 1;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: background-color 0.2s;
+      }
+
+      .submit-button {
+        background-color: #1b5e20;
+      }
+
+      .submit-button:hover {
+        background-color: #388e3c;
+      }
+
+      .reset-button {
+        background-color: #555555;
+      }
+
+      .reset-button:hover {
+        background-color: #777777;
+      }
+
+      footer {
+        background-color: rgb(2, 50, 42);
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 60px;
+      }
+
+      footer a {
+        color: rgb(142, 225, 9);
+        text-decoration: none;
+      }
+
+      .go-to-top {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        background-color: rgb(5, 75, 63);
+        color: rgb(255, 255, 255);
+        border: 2px solid rgb(142, 225, 9);
+        padding: 10px 14px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 6px;
+        z-index: 100;
+      }
+      .go-to-top:hover,
+      .go-to-top:focus {
+        background-color: rgb(22, 111, 96);
+        color: rgb(255, 255, 255);
+      }
+
+      .floating-top-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: rgb(142, 225, 9);
+        color: rgb(2, 50, 42);
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        z-index: 100;
+      }
+      .floating-top-btn:hover,
+      .floating-top-btn:focus {
+        background-color: rgb(155, 245, 15);
+        transform: translateY(-3px);
+      }
+
+      .floating-top-btn.hide-until-scroll {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease,
+          visibility 0.25s;
+      }
+      .floating-top-btn.hide-until-scroll.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body id="top">
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="home.html">&#10052; EcoSphere</a>
+        </div>
+
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="profile.html">User Profile</a></li>
+          <li>
+            <a class="active" aria-current="page" href="feedback.html"
+              >Feedback</a
+            >
+          </li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="feedback-intro">
+        <h1>Climate Programmes and Community Opportunities</h1>
+        <p>
+          Discover activities and initiatives that help people understand
+          climate change, share reliable information, and take meaningful action
+          in their communities.
+        </p>
+      </section>
+
+      <section class="programmes-heading">
+        <h2 id="programmes-heading">
+          Explore Climate Communication Programmes
+        </h2>
+
+        <label for="sortProgramme">Sort programmes:</label>
+        <select id="sortProgramme" class="sort-box">
+          <option>Student-friendly</option>
+          <option>Most popular</option>
+          <option>Community-based</option>
+          <option>Online opportunities</option>
+        </select>
+
+        <div class="programmes-container">
+          <div class="programme-grid">
+            <article class="programme-card">
+              <img
+                src="additionals/forest.jpg"
+                alt="Students participating in a climate discussion"
+              />
+              <h3>Climate Awareness Talks</h3>
+              <p>
+                Join discussions that explain climate issues in a simple and
+                accessible way for students and local communities.
+              </p>
+              <button type="button">Learn More</button>
+            </article>
+
+            <article class="programme-card">
+              <img
+                src="additionals/feedback-pic-2.jpeg"
+                alt="Community members working together to clean a public area"
+              />
+              <h3>Community Climate Action</h3>
+              <p>
+                Participate in local activities that connect climate knowledge
+                with practical environmental action.
+              </p>
+              <button type="button">Get Involved</button>
+            </article>
+
+            <article class="programme-card">
+              <img
+                src="additionals/feedback-pic-3.jpeg"
+                alt="Person using a smartphone to share environmental information"
+              />
+              <h3>Climate Social Media Campaigns</h3>
+              <p>
+                Help spread trustworthy climate information and encourage
+                positive conversations through digital communication.
+              </p>
+              <button type="button">Join Campaign</button>
+            </article>
+
+            <article class="programme-card">
+              <img
+                src="additionals/feedback-pic-4.jpeg"
+                alt="Young people discussing climate change issues"
+              />
+              <h3>Youth Climate Network</h3>
+              <p>
+                Connect with young people who are interested in sharing ideas
+                and creating awareness about climate change.
+              </p>
+              <button type="button">Find Out More</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="reviews-heading">Community Reviews</h2>
+        <div class="rating-summary">
+          <h3>8.8/10 Excellent</h3>
+          <p>Based on 126 community reviews</p>
+        </div>
+
+        <div class="review-grid">
+          <article class="review-card">
+            <h3>Very Informative</h3>
+            <p>
+              The programme helped me understand how clear communication can
+              encourage people to care about climate issues.
+            </p>
+            <p><a href="#reviews-heading">See more</a></p>
+            <p>
+              <strong>Reviewer:</strong> Minduli<br />
+              <strong>Date:</strong> 10 July 2026<br />
+              <strong>Rating:</strong> 9/10
+            </p>
+          </article>
+
+          <article class="review-card">
+            <h3>Good for Students</h3>
+            <p>
+              The activities were easy to understand and gave students practical
+              ideas for sharing climate awareness.
+            </p>
+            <p><a href="#reviews-heading">See more</a></p>
+            <p>
+              <strong>Reviewer:</strong> Vinuri<br />
+              <strong>Date:</strong> 12 July 2026<br />
+              <strong>Rating:</strong> 8/10
+            </p>
+          </article>
+
+          <article class="review-card">
+            <h3>Encouraged Me to Act</h3>
+            <p>
+              I learned that communication is important because people need
+              understandable information before they can take action.
+            </p>
+            <p><a href="#reviews-heading">See more</a></p>
+            <p>
+              <strong>Reviewer:</strong> Thrisha<br />
+              <strong>Date:</strong> 15 July 2026<br />
+              <strong>Rating:</strong> 9.5/10
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2 id="feedback-heading">Share Your Feedback</h2>
+
+        <form id="feedbackForm" class="feedback-form" novalidate>
+          <fieldset>
+            <legend>Personal Details</legend>
+
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required />
+            <span id="nameError" class="error"></span>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required />
+            <span id="emailError" class="error"></span>
+
+            <label for="telephone">Telephone Number:</label>
+            <input type="tel" id="telephone" name="telephone" required />
+            <span id="telephoneError" class="error"></span>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3"></textarea>
+            <span class="error"></span>
+          </fieldset>
+
+          <fieldset>
+            <legend>Feedback Details</legend>
+
+            <label for="programme">Programme Type:</label>
+            <select id="programme" name="programme" required>
+              <option value="">-- Select a programme --</option>
+              <option value="Climate Talks">Climate Awareness Talks</option>
+              <option value="Community Action">Community Climate Action</option>
+              <option value="Social Media">
+                Climate Social Media Campaigns
+              </option>
+              <option value="Youth Network">Youth Climate Network</option>
+            </select>
+            <span id="programmeError" class="error"></span>
+
+            <label for="feedbackDate">Feedback Date:</label>
+            <input type="date" id="feedbackDate" name="feedbackDate" required />
+            <span id="dateError" class="error"></span>
+
+            <label for="meetingDate">Preferred Date and Time:</label>
+            <input type="datetime-local" id="meetingDate" name="meetingDate" />
+            <span class="error"></span>
+
+            <label for="message">Your Message:</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              maxlength="300"
+              required
+            ></textarea>
+            <p>Characters remaining: <span id="charCount">300</span></p>
+            <span id="messageError" class="error"></span>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit" class="submit-button">Submit Feedback</button>
+            <button type="reset" id="resetBtn" class="reset-button">
+              Reset Feedback
+            </button>
+          </div>
+
+          <div id="successMessage" class="success-message">
+            Thank you for your feedback! Your response has been recorded
+            successfully.
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>2026 Climate Communication Team</p>
+      <p>
+        <a href="pageEditor_ST3.html">Page Editor - Student 3</a> |
+        <a href="validation_ST3.html">Validation - Student 3</a>
+      </p>
+    </footer>
+
+    <script>
+      const feedbackForm = document.getElementById("feedbackForm");
+      const message = document.getElementById("message");
+      const charCount = document.getElementById("charCount");
+      const successMessage = document.getElementById("successMessage");
+      const resetBtn = document.getElementById("resetBtn");
+
+      message.addEventListener("input", function () {
+        const remaining = message.maxLength - message.value.length;
+        charCount.textContent = remaining;
+      });
+
+      resetBtn.addEventListener("click", function () {
+        document
+          .querySelectorAll(".error")
+          .forEach((error) => (error.textContent = ""));
+        successMessage.style.display = "none";
+        charCount.textContent = "300";
+      });
+
+      feedbackForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        document
+          .querySelectorAll(".error")
+          .forEach((error) => (error.textContent = ""));
+        successMessage.style.display = "none";
+
+        let valid = true;
+
+        const fullName = document.getElementById("fullName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const telephone = document.getElementById("telephone").value.trim();
+        const programme = document.getElementById("programme").value;
+        const feedbackDate = document.getElementById("feedbackDate").value;
+        const messageText = message.value.trim();
+
+        if (fullName === "") {
+          document.getElementById("nameError").textContent =
+            "Please enter your full name.";
+          valid = false;
+        }
+
+        if (email === "" || !email.includes("@")) {
+          document.getElementById("emailError").textContent =
+            "Please enter a valid email address.";
+          valid = false;
+        }
+
+        if (telephone === "") {
+          document.getElementById("telephoneError").textContent =
+            "Please enter your telephone number.";
+          valid = false;
+        }
+
+        if (programme === "") {
+          document.getElementById("programmeError").textContent =
+            "Please select a programme.";
+          valid = false;
+        }
+
+        if (feedbackDate === "") {
+          document.getElementById("dateError").textContent =
+            "Please select a feedback date.";
+          valid = false;
+        }
+
+        if (messageText === "") {
+          document.getElementById("messageError").textContent =
+            "Please enter your feedback message.";
+          valid = false;
+        }
+
+        if (valid) {
+          successMessage.style.display = "block";
+          feedbackForm.reset();
+          charCount.textContent = "300";
+          window.scrollTo({
+            top: successMessage.offsetTop - 100,
+            behavior: "smooth",
+          });
+        }
+      });
+    </script>
+    <a class="floating-top-btn" href="#top">&#8593; Go to Top</a>
+    <script>
+      (function () {
+        var btn = document.querySelector(".floating-top-btn");
+        if (!btn) return;
+        btn.classList.add("hide-until-scroll");
+        function toggle() {
+          if (window.scrollY > 200) {
+            btn.classList.add("show");
+          } else {
+            btn.classList.remove("show");
+          }
+        }
+        window.addEventListener("scroll", toggle, { passive: true });
+        toggle();
+      })();
+    </script>
+  </body>
+</html>
