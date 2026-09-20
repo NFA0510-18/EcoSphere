@@ -72,14 +72,7 @@ additionals/          Content images and media
 
 Every page has been checked with the W3C Nu HTML Checker and returns no errors or warnings. Evidence is recorded on each student's validation page.
 
-## Team
-
-| Student | Name | Main pages |
-|---------|------|------------|
-| Student 1 | Dunith Peiris | Template, Home, Gallery |
-| Student 2 | Danidu Herath | Splash, Action Impact Simulator, Content |
-| Student 3 | Nicola Fernando | Feedback, Team, Content |
-| Student 4 | Vanuja Liyanage | User Profile, Sitemap, Content |
+## Done by: Nicola Fernando
 
 ## Licence
 
