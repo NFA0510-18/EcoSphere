@@ -2,7 +2,6 @@
 
 A group website for **UN Sustainable Development Goal 13: Climate Action**, built for the Web Design and Development coursework (4COSC011W). The site focuses on real, everyday actions that individuals, communities and businesses can take against climate change.
 
-**Live site:** https://danidu2herath.github.io/Ecospeare/
 
 ## About
 
